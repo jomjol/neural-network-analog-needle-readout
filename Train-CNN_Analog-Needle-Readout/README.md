@@ -29,3 +29,6 @@ Details on setup and training of the CNN neural network
 
 * The images are stored in the x_data[]
 * The expected output for each image in the corresponding y_data[]
+
+
+[test](www.spiegel.de){:target="_blank"}
