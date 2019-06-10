@@ -51,7 +51,7 @@ The major issue for the training is the labeling of the taken images. Here more 
 The training is done using keras in a python environment. For training purpuses the code is documenten in Jupyter notebooks. 
 The environment is setup using Ananconda with Python 3.7.
 
-The training is descibed in detail in the subfolder (Train-CNN_Analog-Needle-Readout).
+The training is descibed in detail in the subfolder [Train-CNN_Analog-Needle-Readout](Train-CNN_Analog-Needle-Readout).
 
 The trained network is stored in the Keras H5-format and transfered 
 
@@ -59,7 +59,7 @@ The trained network is stored in the Keras H5-format and transfered
 
 ### Server Usage
 
-The setup and structure of the server is described in the subfolder [Server-CNN_Analog-Needle-Readout]
+The setup and structure of the server is described in the subfolder [Server-CNN_Analog-Needle-Readout](Server-CNN_Analog-Needle-Readout)
 
 The server is listening to port 3000 and accepts requests in the following syntac:
 
@@ -70,7 +70,7 @@ http://server-ip:3000/?url=http://picture-server/image.jpg
 
 The output is the following:
 
-<img src="./images/server_output.png" width="400">
+	<img src="./images/server_output.png" width="400">
 
 Hopefully you have fun with neural networks and find this usefull. 
 
