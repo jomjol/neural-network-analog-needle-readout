@@ -19,6 +19,7 @@ Here I concentrate on the third step and especially on the readout of the analog
 
 The position behind the m³-digit are represented by an analog meter from 0..9:
 
+<img src="./images/pointer1.jpg" width="100">
 TABELLE mit 1 - 5 beispielen
 
 There are two different types (with and without tick mark at 0.5 divisions - compare picture 1 and 2). This is ignored in the following.
