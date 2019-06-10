@@ -19,8 +19,12 @@ Here I concentrate on the third step and especially on the readout of the analog
 
 The position behind the m³-digit are represented by an analog meter from 0..9:
 
-<img src="./images/pointer1.jpg" width="100">
-TABELLE mit 1 - 5 beispielen
+| Picture        | Value           |
+| ------------- |:-------------:|
+| <img src="./images/pointer1.jpg" width="80"> | 1.6 |
+| <img src="./images/pointer3.jpg" width="80"> | 3.5 |
+| <img src="./images/pointer7.jpg" width="80"> | 7.4 |
+| <img src="./images/pointer9.jpg" width="80"> | 9.2 |
 
 There are two different types (with and without tick mark at 0.5 divisions - compare picture 1 and 2). This is ignored in the following.
 For further processing to extract a continious and steady value it is very usefull also have the subdigit value for the meter. That means the readout should be between 0.0 and 9.9.
@@ -75,6 +79,8 @@ The server is listening to port 3000 and accepts requests in the following synta
 http://server-ip:3000/?url=http://picture-server/image.jpg
 
 The parameter "url" gives an URL to the picture to be analysed. The picture can have any size it will be rescaled to the needed input (32x32) and analysed by the network. The output is the following:
+
+<img src="./images/server_output.png" width="400">
 
 You can find a more detailed description here.
 
