@@ -9,9 +9,6 @@ Details on setup and training of the CNN neural network
 * [Train_CNN_Analog-Readout.ipynb](Train_CNN_Analog-Readout.ipynb):	Jupiter-Notebook with python-code for training
 	* <a href="https://nbviewer.jupyter.org/github/jomjol/neural-network-analog-needle-readout/blob/master/Train-CNN_Analog-Needle-Readout/Train_CNN_Analog-Readout.ipynb" target="_blank">Rendered version</a>
 	
-<a to="www.spiegel.de" target="_blank">Test</a>
-	
-	
 ### Loading the training data_raw_all training data
 
 * The data is expected in the "Input_dir"
@@ -29,6 +26,3 @@ Details on setup and training of the CNN neural network
 
 * The images are stored in the x_data[]
 * The expected output for each image in the corresponding y_data[]
-
-
-[**test**](http://www.spiegel.de/)
