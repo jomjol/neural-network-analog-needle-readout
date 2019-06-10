@@ -19,6 +19,12 @@ Here I concentrate on the third step and especially on the readout of the analog
 
 The position behind the m³-digit are represented by an analog meter from 0..9:
 
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| <img src="./images/pointer1.jpg" width="100">      | <img src="./images/pointer2.jpg" width="100"> | $1600 |
+| 1.6      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
 <img src="./images/pointer1.jpg" width="100">
 TABELLE mit 1 - 5 beispielen
 
