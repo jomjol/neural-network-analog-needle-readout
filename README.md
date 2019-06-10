@@ -84,7 +84,7 @@ The parameter "url" gives an URL to the picture to be analysed. The picture can 
 
 <img src="./images/server_output.png" width="400">
 
-You can find a more detailed description here: [Jyupiter-Notebook: Train-CNN_Analog-Needle-Readout](Train-CNN_Analog-Needle-Readout/Train_CNN_Analog-Readout.ipynb)
+You can find a more detailed description here: [Jyupiter-Notebook: Train-CNN_Analog-Needle-Readout](Train-CNN_Analog-Needle-Readout/Train_CNN_Analog-Readout.html)
 
 
 server-ip: address of the node-server running the script
