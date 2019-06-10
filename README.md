@@ -84,7 +84,10 @@ The parameter "url" gives an URL to the picture to be analysed. The picture can 
 
 <img src="./images/server_output.png" width="400">
 
-You can find a more detailed description here: [Jyupiter-Notebook: Train-CNN_Analog-Needle-Readout](Train-CNN_Analog-Needle-Readout/Train_CNN_Analog-Readout.html)
+You can find a more detailed description here:
+* [Subdirectory Train CNN-Network](Train-CNN_Analog-Needle-Readout)
+* Details on the CNN neural network - including training data, network learning, ... [Readme.md for Train CNN](Train-CNN_Analog-Needle-Readout/Readme.md)
+* A view of the Jupyter-File: [Jupyter-Notebook: Train-CNN_Analog-Needle-Readout](https://nbviewer.jupyter.org/github/jomjol/neural-network-analog-needle-readout/blob/master/Train-CNN_Analog-Needle-Readout/Train_CNN_Analog-Readout.ipynb)
 
 
 server-ip: address of the node-server running the script
