@@ -70,7 +70,7 @@ http://server-ip:3000/?url=http://picture-server/image.jpg
 
 The output is the following:
 
-	<img src="./images/server_output.png" width="400">
+   <img src="./images/server_output.png" width="400">
 
 Hopefully you have fun with neural networks and find this usefull. 
 
