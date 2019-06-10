@@ -6,6 +6,8 @@ Training and using a neural network to read out the value of an analog display -
 I want to readout an analog display of a water meter to record the water consumption within my house automization system.
 The water meter consists of a analog device with numbers for m³ consumption and 4 analog devices corrsponding to 100l, 10l, 1l and 0.1l:
 
+<img src="./images/water_meter_features.jpg" width="400">
+
 The readout consists of 3 steps:
 1. Take an image
 2. Image processing to extract the relevant parts (Feature1 ... Feature4)
@@ -82,7 +84,7 @@ The parameter "url" gives an URL to the picture to be analysed. The picture can 
 
 <img src="./images/server_output.png" width="400">
 
-You can find a more detailed description here.
+You can find a more detailed description here: [Jyupiter-Notebook: Train-CNN_Analog-Needle-Readout](Train-CNN_Analog-Needle-Readout/Train_CNN_Analog-Readout.ipynb)
 
 
 server-ip: address of the node-server running the script
