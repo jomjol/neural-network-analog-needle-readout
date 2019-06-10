@@ -59,7 +59,7 @@ The trained network is stored in the Keras H5-format and transfered
 
 ### Server Usage
 
-The setup and structure of the server is described in the subfolder (Server-CNN_Analog-Needle-Readout)
+The setup and structure of the server is described in the subfolder [Server-CNN_Analog-Needle-Readout]
 
 The server is listening to port 3000 and accepts requests in the following syntac:
 
@@ -67,9 +67,9 @@ http://server-ip:3000/?url=http://picture-server/image.jpg
 
 * server-ip: address of the node-server running the script
 * parameter "url": url to the picture to be analysed 
-	* picture-server
 
 The output is the following:
+
 <img src="./images/server_output.png" width="400">
 
 Hopefully you have fun with neural networks and find this usefull. 
