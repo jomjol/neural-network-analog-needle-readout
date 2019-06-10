@@ -57,10 +57,26 @@ The trained network is stored in the keras H5-format.
 As most of the other system is encoded in node.js I decided not to directly use python, but instead set up the usage of the neural network in an node.js environment. The **tensorflow** library is also supported for node.js and there is only one barrier to overcome:
 
 ### Transfer the Python Keras output to tensorflow input
-I cannot directly import the H5-Format to tensorflow, but need to convert it to a tensorflow readable model description (model.json) and weight storage (group1-shard1of1.bin).
+I cannot directly import the keras H5-Format to tensorflow, but need to convert it to a tensorflow readable model description (model.json) and weight storage (group1-shard1of1.bin).
 
 This is done in an python environment:
 1. install tensorflowjs (pip install tensorflowjs)
 2. Use Converter: tensorflowjs_converter --input_format keras name.h5 export_directory
 
 Unfortuneantly the tensorflowjs package is not supporting Windows 10 Anaconda environment, so you need to do the conversion within a Linux environment (e.g. ubuntu, ...). But there it works without any problems.
+
+### Server Setup
+
+The subfolder "Server-CNN_Analog-Needle-Readout" contains an usage of the trained model within a very simmple http-server.
+
+The server is listening to port 3000 and accepts requests in the following syntac:
+
+http://server-ip:3000/?url=http://picture-server/image.jpg
+
+The parameter "url" gives an URL to the picture to be analysed. The picture can have any size it will be rescaled to the needed input (32x32) and analysed by the network. The output is the following:
+
+You can find a more detailed description here.
+
+
+server-ip: address of the node-server running the script
+picture-server:
