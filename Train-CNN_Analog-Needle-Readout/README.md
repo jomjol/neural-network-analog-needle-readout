@@ -9,7 +9,7 @@ Details on setup and training of the CNN neural network
 * [Train_CNN_Analog-Readout.ipynb](Train_CNN_Analog-Readout.ipynb):	Jupiter-Notebook with python-code for training
 	* <a href="https://nbviewer.jupyter.org/github/jomjol/neural-network-analog-needle-readout/blob/master/Train-CNN_Analog-Needle-Readout/Train_CNN_Analog-Readout.ipynb" target="_blank">Rendered version</a>
 	
-<a href="www.spiegel.de" target="_blank">Test</a>
+<a to="www.spiegel.de" target="_blank">Test</a>
 	
 	
 ### Loading the training data_raw_all training data
