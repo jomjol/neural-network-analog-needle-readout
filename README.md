@@ -31,5 +31,36 @@ Another method that is used here just for fun and demonstration purpose is to tr
 
 ## Neural Network Approach
 
-Convolutional Neural Networks (CNN) are very promiment in image processing, especially in classification of image content. E.g. identify objects (dog, cat, car, bike, ...) or classify hand written letters. Classification could also be an aproach here. One could make 10 classes (0, 1, 2, ... 9) and train the network to identify the image with respect to them. But there is one drawback to this: you do not get the subdigit value, unless you do not make 100 classes (0.0, 0.1, 0.2, ... 9.8, 9.9).
-Therefore I decided to use a CNN network but train it to only one output neuron with a target value betwenn 0.00 and 0.99.
+Convolutional Neural Networks (CNN) are very promiment in image processing. Especially in classification of image content, e.g. identify objects (dog, cat, car, bike, ...) or classify hand written letters. Classification could also be an aproach here. One could make 10 classes (0, 1, 2, ... 9) and train the network to identify the image with respect to them. But there is one drawback to this: you do not get the subdigit value, unless you do not make 100 classes (0.0, 0.1, 0.2, ... 9.8, 9.9).
+
+Therefore I decided to use a CNN network but train it to only one output neuron with a target value betwenn 0.00 and 0.99 (normalization of the output to 1).
+
+The following description consists of two parts:
+1. Training the network using keras and tensorflow in an python environment (Jypiter)
+2. Using the trained network as an http-server - coded in javascript within a node.js environment
+
+## Training the network
+The major issue for the training is the labeling of the taken images. Here more than 2800 images are used for training. The original picutures are zipped in file "data_raw_all.zip". The folder "data_resize_all" contains allready resized pictures (input for CNN: 32x32 pixel, 3 color channel). The labeling is encoded in the filename:
+* ReadOut-35_Watch-1_1003.jpg
+* Readout-xx_Watch-y_####.jpg
+
+xx: labeling without digit: 35 = 3.5 on the analog watch
+y: Identification of the analog
+####: running number to identify the image
+
+The training is descibed in detail in the subfolder "Train-CNN_Analog-Needle-Readout". Details are documented in the following Jyupiter notebook.
+
+The trained network is stored in the keras H5-format.
+
+## Using the trained network
+
+As most of the other system is encoded in node.js I decided not to directly use python, but instead set up the usage of the neural network in an node.js environment. The **tensorflow** library is also supported for node.js and there is only one barrier to overcome:
+
+### Transfer the Python Keras output to tensorflow input
+I cannot directly import the H5-Format to tensorflow, but need to convert it to a tensorflow readable model description (model.json) and weight storage (group1-shard1of1.bin).
+
+This is done in an python environment:
+1. install tensorflowjs (pip install tensorflowjs)
+2. Use Converter: tensorflowjs_converter --input_format keras name.h5 export_directory
+
+Unfortuneantly the tensorflowjs package is not supporting Windows 10 Anaconda environment, so you need to do the conversion within a Linux environment (e.g. ubuntu, ...). But there it works without any problems.
