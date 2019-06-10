@@ -31,4 +31,4 @@ Details on setup and training of the CNN neural network
 * The expected output for each image in the corresponding y_data[]
 
 
-[test](www.spiegel.de){:target="_blank"}
+[test](http://www.spiegel.de){:target="_blank"}
