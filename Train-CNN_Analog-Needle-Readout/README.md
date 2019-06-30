@@ -24,9 +24,9 @@ The training data consists of images of the analog pointer with the size of 32x3
 
 For reshaping the images the following code can be used: [Image_Preparation.ipynb]
 
-## Training strategy
+### Training strategy
 
-The details can be found in the Jupyter file itself: []()
+The details can be found in the Jupyter file itself: [Train_CNN_Analog-Readout.ipynb](Train_CNN_Analog-Readout.ipynb)
 
 The following aspects are implemented:
 ### Common loss function
@@ -43,5 +43,7 @@ The position was scattered with +/-1 pixel in each direction. As the original pi
 The network is trained in two steps
 1. Only brightness variation is applied
 2. Addtional the pixcel scattering is applied
+
+Details are documented in the Jupyter file itself: [Train_CNN_Analog-Readout.ipynb](Train_CNN_Analog-Readout.ipynb)
 
 It turned out, that this results in an overall reduced loss. The network reaches a better global minimum of the loss function.
