@@ -20,9 +20,9 @@ These still needs some documentation to be done.
 
 ## Training Data
 
-The training data consists of images of the analog pointer with the size of 32x32 pixels and RGB color code. The expected readout value is encoded in the filename itself. Details can be found [here](Training_data.md)
+The training data consists of images of the analog pointer with the size of 32x32 pixels and RGB color code. The expected readout value is encoded in the filename itself. Details can be found [Training_Data.md](Training_Data.md)
 
-In order to resize 
+For reshaping the images the following code can be used: [Image_Preparation.ipynb]
 
 ## Training strategy
 
