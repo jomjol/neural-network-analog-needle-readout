@@ -11,7 +11,7 @@ The network consists of several Conv2D, MaxPooling and Flatten Layers:
 
 The structure was developed in an empirical way. Never the less serveral tests on the numbers of neuron, number of layers, activation function in combination with different training strategies were investigated. 
 
-### Loss Function
+#### Loss Function
 Commonly for this kind of problem a mean square loss function is used, measuring the distance of the expected to the predicted value. Here we have a periodic problem. Therefore the distance between 0.99 and 0.00 is the same as between 0.99 and 0.98. 
 It turned out, that taking this ambiguity into account improves the results a lot (to be documented and published).
 
@@ -29,17 +29,17 @@ For reshaping the images the following code can be used: [Image_Preparation.ipyn
 The details can be found in the Jupyter file itself: [Train_CNN_Analog-Readout.ipynb](Train_CNN_Analog-Readout.ipynb)
 
 The following aspects are implemented:
-### Common loss function
+#### Common loss function
 see above
 
-### Scattering input images
+#### Scattering input images
 Scattering the input images by brightness as well as a pixel shift for training variations improved the stability of the network a lot.
 
 Brightness was scattered with +/-30%
 
 The position was scattered with +/-1 pixel in each direction. As the original picture is more than 4 times bigger (142x142 pixel) this ensures enough uncertainty to the upstream image alignment and cut out procedure.
 
-### Two step training
+#### Two step training
 The network is trained in two steps
 1. Only brightness variation is applied
 2. Addtional the pixcel scattering is applied
