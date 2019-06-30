@@ -1,13 +1,9 @@
 # Training data details
 
-### Content of the subdirectory
-* [data_resize_all](data_resize_all):	labeled and resized training images (~2800 images)
-* [data_raw_all.zip](data_raw_all.zip):	raw images from camera (original size)
-* [Image_Preparation.ipynb](Image_Preparation.ipynb):	Image preparation (resize complete sub folder)
-	* <a href="https://nbviewer.jupyter.org/github/jomjol/neural-network-analog-needle-readout/blob/master/Train-CNN_Analog-Needle-Readout/Image_Preparation.ipynb" target="_blank">Rendered version</a>
-* [Train_CNN_Analog-Readout.ipynb](Train_CNN_Analog-Readout.ipynb):	Jupiter-Notebook with python-code for training
-	* <a href="https://nbviewer.jupyter.org/github/jomjol/neural-network-analog-needle-readout/blob/master/Train-CNN_Analog-Needle-Readout/Train_CNN_Analog-Readout.ipynb" target="_blank">Rendered version</a>
-	
+The training data is included as original pictures: [data_raw_all.zip](data_raw_all.zip) (Zipped version). This pictures have a size of 142x142 pixels, which is way to much for the training. Experimenting with different downscaling it turned out, that 32x32 pixel still is big enough to read the value.
+
+Therefore all pictures are resized for training. This is done using [Image_Preparation.ipynb](Image_Preparation.ipynb) and the pictures are stored in the directory [data_resize_all](data_resize_all)
+
 ### Loading the training data_raw_all training data
 * The data is expected in the "Input_dir"
 * Picture size must be 32x32 with 3 color channels (RGB)
