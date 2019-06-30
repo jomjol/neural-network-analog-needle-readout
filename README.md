@@ -28,7 +28,7 @@ Remark: technical the output is normalized to 1, so the expected value is betwee
 
 ### Labeled Training Data
 
-The images are coming from a camera system described elsewhere ([https://github.com/jomjol/water-meter-measurement-system](Overview), [https://www.thingiverse.com/thing:3238162](HW), [https://github.com/jomjol/water-meter-picture-provider](SW). One major effort is to label the pictures with the target value. The labeling is done with a classic picture analyses and partically by hand. Finally more than 2800 labeled pictures are available. The picture are rescaled to 32x32 pixels with RGB color (3 channels).
+The images are coming from a camera system described elsewhere ([Overview](https://github.com/jomjol/water-meter-measurement-system), [HW](https://www.thingiverse.com/thing:3238162), [SW](https://github.com/jomjol/water-meter-picture-provider)). One major effort is to label the pictures with the target value. The labeling is done with a classic picture analyses and partically by hand. Finally more than 2800 labeled pictures are available. The picture are rescaled to 32x32 pixels with RGB color (3 channels).
 
 The resized pictures (subfolder Train-CNN_Analog-Needle-Readout/data_resize_all) as well as the original pictures (zipped in file "data_raw_all.zip") are included in the dataset.
 
