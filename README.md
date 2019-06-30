@@ -1,9 +1,11 @@
 # neural-network-analog-needle-readout
 Training and using a neural network to read out the value of an analog display - example including small node server for demonstration
 
+The readout is used in a water meter measurement system. An overview can be found here: [https://github.com/jomjol/water-meter-measurement-system](https://github.com/jomjol/water-meter-measurement-system)
+
 ## Problem to solve
 
-Analog needle displays need to be read out and transfered to digital values as  input for an house automization project. One can do that with classical image processing. Here a neural network approach is shown. This should be more robust for small changes in illumination and image quality and also it was a good training and practise to get in neural network training and usage. :-)
+An analog needle displays needs to be read out and transfered to digital values as  input for a house automization project. One can do that with classical image processing. Here a neural network approach is shown. This should be more robust for small changes in illumination and image quality and also it was a good training and practise to get into neural networks (training and usage). :-)
 
 The analog meter consists of a scala from 0 to 9, indicator is a clear red pointer showing to the current value. A closer locks shows, that there are two types, with and without tick marks at 0.5 divisions (compare picture 1 and 2). This is ignored in the following.
 
@@ -13,11 +15,11 @@ The analog meter consists of a scala from 0 to 9, indicator is a clear red point
 
 Convolutional Neural Networks (CNN) are very promiment in image processing. Especially in classification of image content, e.g. identify objects (dog, cat, car, bike, ...) or classify hand written letters.
 
-A classic approach would be to use a classification CNN with 10 output classes representing the 10 digits from 0 to 9. This will work fine, but for the usage of the readout also a subdigit readout with one digit after the comma is needed. This would imply on 100 classes (0.0, 0.1, ..., 9.8, 9.9) with a high number of pictures.
+A classic approach would be to use a classification CNN with 10 output classes representing the 10 digits from 0 to 9. This will work fine, but for the usage of the readout later on also the subdigit readout with one digit after the comma is needed. This would imply 100 classes (0.0, 0.1, ..., 9.8, 9.9) with a high number of pictures for training for each class.
 
-Therefore another approach was used finally: a CNN network but with only one output neuron in the final layer trained to the target value. This allows also intermediate values.
+Therefore another approach was used finally: a CNN network with only one output neuron in the final layer trained to the target value. This allows continous values for the output.
 
-Remark: technical the input as well as the output is normalized to 1, so the expected value is between 0.00 to 0.99. The final output is then muliplied with the max value (e.g. x10).
+Remark: technical the output is normalized to 1, so the expected value is between 0.00 to 0.99. The final output needs to be muliplied with the max value (e.g. x10).
 
 | Picture        | Value           | Picture        | Value           | Picture        | Value           | Picture        | Value           |
 | ------------- |:-------------:| ------------- |:-------------:|------------- |:-------------:| ------------- |:-------------:|
@@ -26,7 +28,7 @@ Remark: technical the input as well as the output is normalized to 1, so the exp
 
 ### Labeled Training Data
 
-The images are coming from a camera system described elsewhere (XXX). One major effort is to label the pictures with the target value. The labeling is done with a classic picture analyses and partically by hand. Finally more than 2800 labeled pictures are available. The picture are rescaled to 32x32 pixels with RGB color (3 channels).
+The images are coming from a camera system described elsewhere ([https://github.com/jomjol/water-meter-measurement-system](Overview), [https://www.thingiverse.com/thing:3238162](HW), [https://github.com/jomjol/water-meter-picture-provider](SW). One major effort is to label the pictures with the target value. The labeling is done with a classic picture analyses and partically by hand. Finally more than 2800 labeled pictures are available. The picture are rescaled to 32x32 pixels with RGB color (3 channels).
 
 The resized pictures (subfolder Train-CNN_Analog-Needle-Readout/data_resize_all) as well as the original pictures (zipped in file "data_raw_all.zip") are included in the dataset.
 
@@ -36,7 +38,7 @@ The project consists of two parts:
 
 ## Training the network
 
-The training is done using Keras in a python environment. For training purpuses the code is documented in Jupyter notebooks. The environment is setup using Ananconda with Python 3.7[^1]. 
+The training is done using Keras in a python environment. For training purpuses the code is documented in Jupyter notebooks. The environment is setup using Ananconda with Python 3.7[1]. 
 
 The training is descibed in detail in the subfolder [Train-CNN_Analog-Needle-Readout](Train-CNN_Analog-Needle-Readout).
 
@@ -68,7 +70,7 @@ Best regards,
 **jomjol**
   
   
-[^1]: The following book is found very usefull for background, basic setting and different approaches:  
+[1]: The following book is found very usefull for background, basic setting and different approaches:  
 Mattheiu Deru and Alassane Ndiaye: Deep Learning with TensorFlow, Keras, und Tensorflow.js
 
 
