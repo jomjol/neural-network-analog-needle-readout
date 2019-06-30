@@ -19,8 +19,6 @@ function load_image_to_tensor(image_name)
       }
     }
     var image_tensor = tf.tensor(rawImOhneAlpha, [1,32,32,3])
-    const b = tf.scalar(255);
-    image_tensor = image_tensor.div(b);         // normalize to 0..1
     return image_tensor;
 }
 
