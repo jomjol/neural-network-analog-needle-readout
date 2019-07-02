@@ -21,6 +21,6 @@ Corresponding Juypiter-Files:
 
 | CNN | Link |
 | -------- | ---- |
-| 3 Conv3D (Original) | [jyupiter_files/00a_Original.ipynb](00a_Original.ipynb) |
-| 2 Conv3D  | [jyupiter_files/07a_CNN-LessLayer-1.ipynb](07a_CNN-LessLayer-1.ipynb) |
-| 1 Conv3D  | [jyupiter_files/07a_CNN-LessLayer-1.ipynb](07a_CNN-LessLayer-2.ipynb) |
+| 3 Conv3D (Original) | [00a_Original.ipynb](jyupiter_files/00a_Original.ipynb) |
+| 2 Conv3D  | [07a_CNN-LessLayer-1.ipynb](jyupiter_files/07a_CNN-LessLayer-1.ipynb) |
+| 1 Conv3D  | [07a_CNN-LessLayer-2.ipynb](jyupiter_files/07a_CNN-LessLayer-2.ipynb) |
