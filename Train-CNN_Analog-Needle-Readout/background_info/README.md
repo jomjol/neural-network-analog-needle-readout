@@ -19,8 +19,8 @@ Looking on the deviation, one can see, that the standart deviation ("roughness")
 
 Corresponding Juypiter-Files:
 
-| Original | Link |
+| CNN | Link |
 | -------- | ---- |
-| 3 Conv3D (Original) | [jyupiter_files/00a_Original.ipynb](jyupiter_files/00a_Original.ipynb) |
-| 2 Conv3D  | []() |
-| 1 Conv3D  | []() |
+| 3 Conv3D (Original) | [jyupiter_files/00a_Original.ipynb](00a_Original.ipynb) |
+| 2 Conv3D  | [jyupiter_files/07a_CNN-LessLayer-1.ipynb](07a_CNN-LessLayer-1.ipynb) |
+| 1 Conv3D  | [jyupiter_files/07a_CNN-LessLayer-1.ipynb](07a_CNN-LessLayer-2.ipynb) |
