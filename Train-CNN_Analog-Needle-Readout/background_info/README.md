@@ -30,7 +30,7 @@ Corresponding Juypiter-Files:
 How many neurons are needed in one layer? The number in a layer was choosen to be to the power of 2. So the next graphs shows a variation of this number of neurons in each layer. The input layer (32x32x3) and the output layer (1) was naturally unchanged.
 
 | Model | Input | Conv2D_1 | Conv2D_2 | Conv2D_3 | Flatten | Linear | Output | Trainalbe Parameters |
-| ----- | ----- | -------- | ----- | ---- | ----- | ---- | ----- | ----- |
+| ----- |:-----:|:--------:|:-----:|:----:|:-----:|:----:|:-----:|:-----:|
 | Bigger x2 | 32x32x3 | (128, (5, 5)) | (64, (5, 5)) | (64, (3, 3)) | 256 | 32 | 1 | 276423 |
 | Original | 32x32x3 | (64, (5, 5)) | (32, (5, 5)) | (32, (3, 3)) | 128 | 16 | 1 | 71655 |
 | Smaller 0,5 | 32x32x3 | (32, (5, 5)) | (16, (5, 5)) | (16, (3, 3)) | 64 | 8 | 1 | 19197 |
@@ -40,7 +40,7 @@ How many neurons are needed in one layer? The number in a layer was choosen to b
 
 The influence on the mean and standard deviation can be seen as follows:
 
-<img src="./images/node_number_mean_std.png" > <img src="./images/node_number_trainable_weigths.png" >
+<img src="./images/node_number_mean_std.png"  width="450"> 
 
 The corresponding Jyupiter-Files can be found here:
 
