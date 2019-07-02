@@ -1,6 +1,6 @@
-# Investigations on CNN-Structures
+# Investigations on CNN-Parameters
 
-Here first very simple investigations on CNN parameters are shown.
+This CNN is a great playground for various parameters. Here first very simple investigations are shown.
 
 ## Number of layers
 The used net consists of three Conv2D layers alternated with MaxPooling and afterwards a flattening. What happens, if the number of Conv2D is reduced?

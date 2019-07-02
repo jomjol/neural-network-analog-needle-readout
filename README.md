@@ -60,6 +60,11 @@ http://server-ip:3000/?url=http://picture-server/image.jpg
 The output is the following:
 
    <img src="./images/server_output.png" width="400">
+   
+## Investigations on CNN-Parameters
+This CNN gives a great playground to investigate the influence of different parameteres like number of layers, size of single layers, ...
+First "investigations" can be found in the subdirectory background_info within the training section: [/Train-CNN_Analog-Needle-Readout/background_info/](/Train-CNN_Analog-Needle-Readout/background_info/)
+
 
 Hopefully you have fun with neural networks and find this usefull. 
 
