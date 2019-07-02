@@ -11,5 +11,6 @@ The mean value increases from 0% to -2% deviation, almost linear. The standard d
 
 | Deviation        | CNN-Structure           |
 | ------------- | --------------- |
-| <img src="./images/Deviation_Original.png" > |  <img src="./images/cnn_structure.png"> |
+| <img src="./images/Deviation_Original.png" > width="150"|  <img src="./images/cnn_structure.png"> |
 | <img src="./images/Deviation_Less_Layer_1.png" > |  <img src="./images/cnn_structure_Less_Layer_1.png"> |
+| <img src="./images/Deviation_Less_Layer_2.png" > |  <img src="./images/cnn_structure_Less_Layer_2.png"> |
