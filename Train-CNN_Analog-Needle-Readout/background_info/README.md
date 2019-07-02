@@ -13,6 +13,14 @@ The mean value increases from 0% to -2% deviation, almost linear. The standard d
 | ------------- | --------------- |
 | <img src="./images/Deviation_Original.png" width="250"> |  <img src="./images/cnn_structure_original.png"> |
 | <img src="./images/Deviation_Less_Layer_1.png" width="250" > |  <img src="./images/cnn_structure_Less_Layer_1.png"> |
-| <img src="./images/Deviation_Less_Layer_2.png width="250"" > |  <img src="./images/cnn_structure_Less_Layer_2.png"> |
+| <img src="./images/Deviation_Less_Layer_2.png" width="250" > |  <img src="./images/cnn_structure_Less_Layer_2.png"> |
 
 Looking on the deviation, one can see, that the standart deviation ("roughness") increases with decreasing number of layers.
+
+Corresponding Juypiter-Files:
+
+| Original | Link |
+| -------- | ---- |
+| 3 Conv3D (Original) | [jyupiter_files/00a_Original.ipynb](jyupiter_files/00a_Original.ipynb) |
+| 2 Conv3D  | []() |
+| 1 Conv3D  | []() |
