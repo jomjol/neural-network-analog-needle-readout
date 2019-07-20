@@ -1,6 +1,21 @@
 # Node server using an neural network with tensorflow
 Details on setup and training of the CNN neural network
 
+To run the node.js code copy the whole directory (minimum: server_analog_readout_converter.js) and the subdirectory "lib" and "image".
+
+Path are relative, so it should run immediatly with the following command:
+* `node server_analog_readout_converter.js`
+
+### Remarks
+* Python assumes some libraries to be installed using `pip install`:
+	* `opencv4nodejs`
+	* `@tensorflow/tfjs-node`
+	* `@tensorflow/tfjs`
+	* `jpeg-js`
+
+
+As most of the other system is encoded in node.js I decided not to directly use python, but instead set up the usage of the neural network in an node.js environment. The tensorflow library is also supported for node.js and beside installing the supporting libraries, there is only one barrier to overcome:
+
 ### Content of the subdirectory
 * The whole subdirectory can directly run in an node.js environment
 * Don't forget to copy including the subfolders - they contain library and a trained version of the model
