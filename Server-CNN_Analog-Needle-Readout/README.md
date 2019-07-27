@@ -7,7 +7,7 @@ Path are relative, so it should run immediatly with the following command:
 * `node server_analog_readout_converter.js`
 
 ### Remarks
-* Python assumes some libraries to be installed using `pip install`:
+* node assumes some libraries to be installed using `npm install`:
 	* `opencv4nodejs`
 	* `@tensorflow/tfjs-node`
 	* `@tensorflow/tfjs`
