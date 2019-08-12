@@ -25,7 +25,7 @@ For reshaping the images the following code can be used: [Image_Preparation.ipyn
 
 ## Training strategy
 
-The details can be found in the Jupyter file itself: ***[Train_CNN_Analog-Readout.ipynb](Train_CNN_Analog-Readout.ipynb)***
+The details can be found in the Jupyter file itself: ***[tbd.ipynb](tbd.ipynb)***
 
 The following aspects are implemented:
 
@@ -41,14 +41,10 @@ The position was scattered with +/-1 pixel in each direction. As the original pi
 
 The results shows the expected result:
 
-#### Metric 1:
-<img src="./images/metric1.png">
+| Metric 1        | Metric 2           | Selector Neuron        |  
+| -------------- |:---------------:| -------------- |
+| <img src="./images/metric1.png" width="300"> | <img src="./images/metric2.png" width="300"> |<img src="./images/selector.png" width="300"> |
 
-#### Metric 2:
-<img src="./images/metric2.png">
-
-#### Selector Neuron:
-<img src="./images/selector.png">
 
 It can be seen that Metric 1 and Metric 2 have their ambigious points arouond "0.0" = "1.0", respectivly "0.5". Also the selector has its ambigious point at "0.25" respectively "0.75". But as these points are orthogonal to each other, the combinded output will have no error due to this.
 
