@@ -6,7 +6,7 @@ The network consists of several Conv2D, MaxPooling and Flatten Layers:
 
 <img src="./images/cnn_structure_version2.png">
 
-The structure is basically the same as in [Verion 1](CNN_Version1.md). Two changes were applied: 
+The structure is basically the same as in [Version 1](CNN_Version1.md). Two changes were applied: 
 1. change to 3 output neurons
 2. double the number of neurons in second last layer from 16 to 32
 

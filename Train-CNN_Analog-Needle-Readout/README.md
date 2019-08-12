@@ -2,10 +2,10 @@
 Details on setup and training of the CNN neural network
 
 ## Version
-##### 1.0 Initial Version
+##### [1.0 Initial Version](CNN_Version1.md)
 * CNN with one output and periodic loss function
 * Problem with pointers pointing straight updwards (12 o'clock) due to ambigouty of 1.0 and 0.0 in the output
-##### 2.0 CNN with 2 outputs and selector
+##### [2.0 CNN with 2 outputs and selector](CNN_Version2)
 * Solved the problem of ambigioutiy by introducing 2nd output and selector neuron
 
 ## Software Environment
