@@ -77,4 +77,6 @@ Also this selector has a unabigious value around 0.25 and 0.75. But there it doe
 
 The only drawback of this approach with 3 output neurons is, that you have to process the output through a simple algorithm, switching between the two metrics, depending on the selector neuron.
 
+<img src="./images/final_algo.png" width="400">
+
 Details on training the network can be found here [CNN_Version2.md](CNN_Version2.md)

@@ -39,18 +39,18 @@ The position was scattered with +/-1 pixel in each direction. As the original pi
 
 ## Results
 
-The results shows the expected result:
+The results show the expected behaviour:
 
 | Metric 1        | Metric 2           | Selector Neuron        |  
 | -------------- |:---------------:| -------------- |
 | <img src="./images/metric1.png" width="300"> | <img src="./images/metric2.png" width="300"> |<img src="./images/selector.png" width="300"> |
 
 
-It can be seen that Metric 1 and Metric 2 have their ambigious points arouond "0.0" = "1.0", respectivly "0.5". Also the selector has its ambigious point at "0.25" respectively "0.75". But as these points are orthogonal to each other, the combinded output will have no error due to this.
+It can be seen that the ambigious/switching points around "0.0" = "1.0" (Metric 1), respectivly "0.5" (Metric 2). Also the selector has its ambigious point at "0.25" respectively "0.75". But as these points are orthogonal to each other, the combinded output will therefore have no error due to this.
 
 Using the threshold of the selector right in the middle (e.g. 0.5) will choose the right metric. Because it clearly discriminates the switching point. If the selector itself is at its switching point, it does not matter which metric to choose, because there the metric have continous and equal results.
 
-Cheching the combinded output by the deviation by a comparison to the label shows, that the error is very small. The statistic shows an average value of 0.05%+/-1.4% with a maximum deviation of 8%. With respect to the pointer, that means that the error is in the subdigit range in the maximum (< 10%).
+Checking the combinded output by the deviation by a comparison to the label shows, that the error is very small. The statistic shows an average value of 0.05%+/-1.4% with a maximum deviation of 8%. With respect to the pointer, that means that the error is in the subdigit range in the maximum (< 10%).
 
 ### Deviation from expected value
 <img src="./images/deviation.png">
