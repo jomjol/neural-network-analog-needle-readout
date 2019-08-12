@@ -79,4 +79,6 @@ The only drawback of this approach with 3 output neurons is, that you have to pr
 
 <img src="./images/final_algo.png" width="600">
 
+The modulo operator ensures, that the result is between 0 and 1 reflecting the periodic nature.
+
 Details on training the network can be found here [CNN_Version2.md](CNN_Version2.md)
