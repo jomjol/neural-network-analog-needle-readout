@@ -67,13 +67,14 @@ The two metrics are shown here:
 |:--------------------------------------------:|:---------------:|
 | <img src="./images/metric_normal.png" width="400">                | <img src="./images/metric_shifted.png" width="400">              |
 
-
-This directly makes clear, that the switching point now changed from the analog meter pointing upwards to "0" to the analog meter pointing downwards and that the upward position now is continious and reliable.
+This makes directly clear, that the switching point of unambigious values switches from 0 (pointer upwards) to 0.5 (pointer downwards). At all other points the values is continious and therefore reliable.
  
-So there only remains the problem, of how to select which of the both values to use now. This can be easily solved by adding a selector neuron. This is giving a "0" if the counter is in the upper half and a "1", if the pointer is heading downwards.
+So there only remains the problem, of how to select which of the two metrics to use in a concrete case. This can be easily solved by adding a selector neuron. This is giving a "0" if the pointer is in the upper half and a "1", if the pointer is heading downwards.
 
 <img src="./images/metric_selector.png" width="150">
 
-Also this selector has a unabigious value, at the position of 0.25 and 0.75. But there it does not matter which output value to be used as both are valid.
+Also this selector has a unabigious value around 0.25 and 0.75. But there it does not matter which metric to used as both are valid and giving reliable results.
 
-Details of the network can be found here []()
+The only drawback of this approach with 3 output neurons is, that you have to process the output through a simple algorithm, switching between the two metrics, depending on the selector neuron.
+
+Details on training the network can be found here [CNN_Version2.md](CNN_Version2.md)
