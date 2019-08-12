@@ -65,14 +65,14 @@ The two metrics are shown here:
 
 |  Metric 1 |  Metric 2 |
 |:--------------------------------------------:|:---------------:|
-| <img src="./images/metric_normal.png" width="300">                | <img src="./images/metric_shifted.png" width="300">              |
+| <img src="./images/metric_normal.png" width="400">                | <img src="./images/metric_shifted.png" width="400">              |
 
 
 This directly makes clear, that the switching point now changed from the analog meter pointing upwards to "0" to the analog meter pointing downwards and that the upward position now is continious and reliable.
  
 So there only remains the problem, of how to select which of the both values to use now. This can be easily solved by adding a selector neuron. This is giving a "0" if the counter is in the upper half and a "1", if the pointer is heading downwards.
 
-<img src="./images/metric_selector.png"  width="300">
+<img src="./images/metric_selector.png" width="150">
 
 Also this selector has a unabigious value, at the position of 0.25 and 0.75. But there it does not matter which output value to be used as both are valid.
 
