@@ -2,7 +2,7 @@
 Details on setup and training of the CNN neural network
 
 ## Version
-##### 1.0 Inital Version
+##### 1.0 Initial Version
 * CNN with one output and periodic loss function
 * Problem with pointers pointing straight updwards (12 o'clock) due to ambigouty of 1.0 and 0.0 in the output
 ##### 2.0 CNN with 2 outputs and selector
@@ -18,7 +18,7 @@ A very basic problem in this kind of data evaluation is the periodic nature of a
 But with respect to the output value they are mapped on the two extrema of the scala, maximum separated:
 
 | Picture        | Value           | Picture        | Value           | Picture        | Value           | 
- ------------- |:-------------:| ------------- |:-------------:|------------- |:-------------:| ------------- |:-------------:|
+| -------------- |:---------------:| -------------- |:---------------:| -------------- |:-------------:| 
 | <img src="./images/zeiger_97.jpg" width="80"> | 9.7 | <img src="./images/zeiger_02.jpg" width="80"> | 0.2 |<img src="./images/zeiger_00_11.jpg" width="80"> | 1.0 or 0.0 ?|
 
 
@@ -27,7 +27,7 @@ A standard metric would measure a maximum difference between picture 1 and pictu
 
 ### Periodic loss function (Version 1)
 
-I have tacled this problem first with a periodic loss function. Which means, that the loss function of the CNN itself takes care about the ambigouity of the two values (9.9 and 0.1 have the same distance to 0):
+I have tackled this problem first with a periodic loss function. Which means, that the loss function of the CNN itself takes care about the ambigouity of the two values (9.9 and 0.1 have the same distance to 0):
 
 <img src="./images/periodic_nature.png" width="300">
 
@@ -47,17 +47,25 @@ There is a trick and rather simple extension of the CNN to circumvent this probl
 
 ### Two outputs and a selector (Version 2)
 
-The problem is not the incontinouty at value 0.99 to 0.00. There is not discontinuity in any pictures around that value, but at some point you need to make a cut in the digital values. The discontinouty can be shifted to any value, e.g. to a pointer showing the value 0.50 (directing downwards) by adding 0.5 modulo 1 to the expected value. You still have a unique mapping, just with an offset of 0.5: 
-* pointer 0 --> mapped to 0.5 
-* pointer 0.1 --> mapped to 0.6
-* ... 
-* pointer 0.5 --> mapped to 1.0 = 0.0 
-* pointer 0.6 --> mapped to 0.1
+The problem is not the incontinuity at value 0.99 to 0.00. There is not discontinuity in any pictures around that value, but at some point you need to make a cut in the digital values. The discontinouty can be shifted to any value, e.g. to a pointer showing the value 0.50 (directing downwards) by adding 0.5 modulo 1 to the expected value. You still have a unique mapping, just with an offset of 0.5: 
+
+|                     Image                    |  Metric 1 Value |  Metric 2 Value |
+|:--------------------------------------------:|:---------------:|:---------------:|
+| <img src="./images/pointer0.png" width="80"> | 0               | 0.5             |
+| <img src="./images/pointer1.png" width="80"> | 0.1             | 0.6             |
+| ...                                          |                 |                 |
+| <img src="./images/pointer4.png" width="80"> | 0.4             | 0.9             |
+| <img src="./images/pointer5.png" width="80"> | 0.5             | 0.0             |
+| <img src="./images/pointer6.png" width="80"> | 0.6             | 0.1             |
+| ...                                          |                 |                 |
+| <img src="./images/pointer9.png" width="80"> | 0.9             | 0.4             |
+
 
 The two metrics are shown here:
 
-<img src="./images/metric_normal.png">
-<img src="./images/metric_shifted.png">
+|  Metric 1 |  Metric 2 |
+|:--------------------------------------------:|:---------------:|
+| <img src="./images/metric_normal.png" width="200">                | <img src="./images/metric_shifted.png" width="200">              |
 
 
 This directly makes clear, that the switching point now changed from the analog meter pointing upwards to "0" to the analog meter pointing downwards and that the upward position now is continious and reliable.
