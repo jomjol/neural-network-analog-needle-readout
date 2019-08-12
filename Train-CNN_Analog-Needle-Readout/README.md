@@ -51,28 +51,28 @@ The problem is not the incontinuity at value 0.99 to 0.00. There is not disconti
 
 |                     Image                    |  Metric 1 Value |  Metric 2 Value |
 |:--------------------------------------------:|:---------------:|:---------------:|
-| <img src="./images/pointer0.png" width="80"> | 0               | 0.5             |
-| <img src="./images/pointer1.png" width="80"> | 0.1             | 0.6             |
+| <img src="./images/pointer0.jpg" width="60"> | 0               | 0.5             |
+| <img src="./images/pointer1.jpg" width="60"> | 0.1             | 0.6             |
 | ...                                          |                 |                 |
-| <img src="./images/pointer4.png" width="80"> | 0.4             | 0.9             |
-| <img src="./images/pointer5.png" width="80"> | 0.5             | 0.0             |
-| <img src="./images/pointer6.png" width="80"> | 0.6             | 0.1             |
+| <img src="./images/pointer4.jpg" width="60"> | 0.4             | 0.9             |
+| <img src="./images/pointer5.jpg" width="60"> | 0.5             | 0.0             |
+| <img src="./images/pointer6.jpg" width="60"> | 0.6             | 0.1             |
 | ...                                          |                 |                 |
-| <img src="./images/pointer9.png" width="80"> | 0.9             | 0.4             |
+| <img src="./images/pointer9.jpg" width="60"> | 0.9             | 0.4             |
 
 
 The two metrics are shown here:
 
 |  Metric 1 |  Metric 2 |
 |:--------------------------------------------:|:---------------:|
-| <img src="./images/metric_normal.png" width="200">                | <img src="./images/metric_shifted.png" width="200">              |
+| <img src="./images/metric_normal.png" width="300">                | <img src="./images/metric_shifted.png" width="300">              |
 
 
 This directly makes clear, that the switching point now changed from the analog meter pointing upwards to "0" to the analog meter pointing downwards and that the upward position now is continious and reliable.
  
 So there only remains the problem, of how to select which of the both values to use now. This can be easily solved by adding a selector neuron. This is giving a "0" if the counter is in the upper half and a "1", if the pointer is heading downwards.
 
-<img src="./images/metric_selector.png">
+<img src="./images/metric_selector.png"  width="300">
 
 Also this selector has a unabigious value, at the position of 0.25 and 0.75. But there it does not matter which output value to be used as both are valid.
 
