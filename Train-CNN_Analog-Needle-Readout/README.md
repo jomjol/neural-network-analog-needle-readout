@@ -1,47 +1,84 @@
 # Training the CNN neural network
 Details on setup and training of the CNN neural network
 
+## Version
+##### [1.0 Initial Version](CNN_Version1.md)
+* CNN with one output and periodic loss function
+* Problem with pointers pointing straight updwards (12 o'clock) due to ambigioutiy of 1.0 and 0.0 in the output
+##### [2.0 CNN with 2 outputs and selector](CNN_Version2)
+* Solved the problem of ambigioutiy by introducing 2nd output and selector neuron
+
 ## Software Environment
 The training is done using Keras in a python environment. For training purpuses the code is documented in Jupyter notebooks. The environment is setup using Ananconda with Python 3.7.
 
-## Network Structure
-The network consists of several Conv2D, MaxPooling and Flatten Layers:
+## Basic Problem of ambiguous input to output mapping
 
-<img src="./images/cnn_structure.png">
+A very basic problem in this kind of data evaluation is the periodic nature of an analog counter. The images of a counter pointing to an value of 9.9 is very similar to a picture pointing to 0.0.
 
-The structure was developed in an empirical way. Never the less serveral tests on the numbers of neuron, number of layers, activation function in combination with different training strategies were investigated. 
+But with respect to the output value they are mapped on the two extrema of the scala, maximum separated:
 
-#### Loss Function
-Commonly for this kind of problem a mean square loss function is used, measuring the distance of the expected to the predicted value. Here we have a periodic problem. Therefore the distance between 0.99 and 0.00 is the same as between 0.99 and 0.98. 
-It turned out, that taking this ambiguity into account improves the results a lot (to be documented and published).
-
-These still needs some documentation to be done.
+| Picture        | Value           | Picture        | Value           | Picture        | Value           | 
+| -------------- |:---------------:| -------------- |:---------------:| -------------- |:-------------:| 
+| <img src="./images/zeiger_97.jpg" width="80"> | 0.97 | <img src="./images/zeiger_02.jpg" width="80"> | 0.02 |<img src="./images/zeiger_00_11.jpg" width="80"> | 1.0 or 0.0 ?|
 
 
-## Training Data
+A standard metric would measure a maximum difference between picture 1 and picture 2. For the last picture it is even for a human eye not possible to distingues if it's rather to the left or to the right.
 
-The training data consists of images of the analog pointer with the size of 32x32 pixels and RGB color code. The expected readout value is encoded in the filename itself. Details can be found [Training_Data.md](Training_Data.md)
 
-For reshaping the images the following code can be used: [Image_Preparation.ipynb]
+### Periodic loss function (Version 1)
 
-## Training strategy
+I have tackled this problem first with a periodic loss function. Which means, that the loss function of the CNN itself takes care about the ambigouity of the two values (9.9 and 0.1 have the same distance to 0):
 
-The details can be found in the Jupyter file itself: ***[Train_CNN_Analog-Readout.ipynb](Train_CNN_Analog-Readout.ipynb)***
+<img src="./images/periodic_nature.png" width="300">
 
-The following aspects are implemented:
-#### Common loss function
-see above
+The periodic loss improved the convergence and the quality a lot. The details on training the CNN with a periodic loss cfunction can be found here [CNN_Version1.md](CNN_Version1.md).
 
-#### Scattering input images
-Scattering the input images by brightness as well as a pixel shift for training variations improved the stability of the network a lot.
+ Never the less it turned out, that it is still not enough.
 
-Brightness was scattered with +/-30%
+#### Problem of periodic loss
+Let's take the mathematic of CNN into account: 
+* The equations between the layers are linear superpositions of  weights and activation states of neurons
+* The activation functions of a neuron used here are of continuous charachter
+This means, that between input and output is a continuous relation. So if you have one input image, that results in 0.99 and another resulting in 0.00, you can always find a sligth modification between these two images, that result in any value in between these two extremas. That means, that at the switching point the output of a continuous equation system cannot be accurate.
 
-The position was scattered with +/-1 pixel in each direction. As the original picture is more than 4 times bigger (142x142 pixel) this ensures enough uncertainty to the upstream image alignment and cut out procedure.
+Experimental inverstations showed, that using a periodic loss function increasess the steppness at the switching point, but in general cannot resolve it. So from time to time there is an inaccurate result, disturbing the system.
 
-#### Two step training
-The network is trained in two steps
-1. Only brightness variation is applied
-2. Addtional the pixcel scattering is applied
+There is a trick and rather simple extension of the CNN to circumvent this problem - see next chapter
 
-It turned out, that this results in an overall reduced loss. The network reaches a better global minimum of the loss function.
+### Two outputs and a selector (Version 2)
+
+The problem is not the incontinuity at value 0.99 to 0.00. There is not discontinuity in any pictures around that value, but at some point you need to make a cut in the digital values. The discontinouty can be shifted to any value, e.g. to a pointer showing the value 0.50 (directing downwards) by adding 0.5 modulo 1 to the expected value. You still have a unique mapping, just with an offset of 0.5: 
+
+|                     Image                    |  Metric 1 Value |  Metric 2 Value |
+|:--------------------------------------------:|:---------------:|:---------------:|
+| <img src="./images/pointer0.jpg" width="60"> | 0               | 0.5             |
+| <img src="./images/pointer1.jpg" width="60"> | 0.1             | 0.6             |
+| ...                                          |                 |                 |
+| <img src="./images/pointer4.jpg" width="60"> | 0.4             | 0.9             |
+| <img src="./images/pointer5.jpg" width="60"> | 0.5             | 0.0             |
+| <img src="./images/pointer6.jpg" width="60"> | 0.6             | 0.1             |
+| ...                                          |                 |                 |
+| <img src="./images/pointer9.jpg" width="60"> | 0.9             | 0.4             |
+
+
+The two metrics are shown here:
+
+|  Metric 1 |  Metric 2 |
+|:--------------------------------------------:|:---------------:|
+| <img src="./images/metric_normal.png" width="400">                | <img src="./images/metric_shifted.png" width="400">              |
+
+This makes directly clear, that the switching point of unambigious values switches from 0 (pointer upwards) to 0.5 (pointer downwards). At all other points the values is continious and therefore reliable.
+ 
+So there only remains the problem, of how to select which of the two metrics to use in a concrete case. This can be easily solved by adding a selector neuron. This is giving a "0" if the pointer is in the upper half and a "1", if the pointer is heading downwards.
+
+<img src="./images/metric_selector.png" width="150">
+
+Also this selector has a unabigious value around 0.25 and 0.75. But there it does not matter which metric to used as both are valid and giving reliable results.
+
+The only drawback of this approach with 3 output neurons is, that you have to process the output through a simple algorithm, switching between the two metrics, depending on the selector neuron.
+
+<img src="./images/final_algo.png" width="600">
+
+The modulo operator ensures, that the result is between 0 and 1 reflecting the periodic nature.
+
+Details on training the network can be found here [CNN_Version2.md](CNN_Version2.md)

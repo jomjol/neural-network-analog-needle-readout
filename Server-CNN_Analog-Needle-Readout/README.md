@@ -1,8 +1,14 @@
 # Node server using an neural network with tensorflow
 Details on setup and training of the CNN neural network
 
-To run the node.js code copy the whole [code](code) directory including subdirectory.
+## Version
+##### 1.0 Initial Version
+* Using CNN-Version1 with one neuron output and periodic loss. Details see: [Overview CNN](https://github.com/jomjol/neural-network-analog-needle-readout/blob/master/Train-CNN_Analog-Needle-Readout/README.md)
+##### 2.0 Implemenation of CNN with 2 outputs and selector
+* Solved the problem of ambigioutiy by introducing 2nd output and selector neuron
 
+To run the node.js code copy the whole [code](code) directory including subdirectory.
+							   
 Path are relative, so it should run immediatly with the following command:
 * `node server_analog_readout_converter.js`
 
@@ -17,11 +23,13 @@ Path are relative, so it should run immediatly with the following command:
 As most of the other system is encoded in node.js I decided not to directly use python, but instead set up the usage of the neural network in an node.js environment. The tensorflow library is also supported for node.js and beside installing the supporting libraries, there is only one barrier to overcome:
 
 ### Content of the subdirectory
-* The whole subdirectory can directly run in an node.js environment
+#### Code
+* The subdirectory code contains the acutal version. A copy of it can directly run in an node.js environment
 * Don't forget to copy including the subfolders - they contain library and a trained version of the model
 * Path are relative, so it should run immediatly with the following command:
 	* `node server_analog_readout_converter.js`
-	
+#### Archiv
+* Contains old code versions (see above)
 	
 As most of the other system is encoded in node.js I decided not to directly use python, but instead set up the usage of the neural network in an node.js environment. The **tensorflow** library is also supported for node.js and there is only one barrier to overcome:
 
