@@ -17,7 +17,7 @@ Here the loss function is a simple mean-square-distance. The inaccuracy at the s
 
 
 ## Training Data
-Same approach as in [Verion 1](CNN_Version1.md):
+Same approach as in [Version 1](CNN_Version1.md):
 
 The training data consists of images of the analog pointer with the size of 32x32 pixels and RGB color code. The expected readout value is encoded in the filename itself. Details can be found [Training_Data.md](Training_Data.md)
 
