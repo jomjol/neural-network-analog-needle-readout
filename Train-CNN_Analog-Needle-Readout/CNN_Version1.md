@@ -23,7 +23,7 @@ For reshaping the images the following code can be used: [Image_Preparation.ipyn
 
 ## Training strategy
 
-The details can be found in the Jupyter file itself: ***[Train_CNN_Analog-Readout.ipynb](Train_CNN_Analog-Readout.ipynb)***
+The details can be found in the Jupyter file itself: ***[Train_CNN_Analog-Readout_Version1.ipynb](Train_CNN_Analog-Readout_Version1.ipynb)***
 
 The following aspects are implemented:
 #### Common loss function

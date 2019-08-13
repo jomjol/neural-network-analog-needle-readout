@@ -4,7 +4,7 @@ Details on setup and training of the CNN neural network
 ## Version
 ##### [1.0 Initial Version](CNN_Version1.md)
 * CNN with one output and periodic loss function
-* Problem with pointers pointing straight updwards (12 o'clock) due to ambigouty of 1.0 and 0.0 in the output
+* Problem with pointers pointing straight updwards (12 o'clock) due to ambigioutiy of 1.0 and 0.0 in the output
 ##### [2.0 CNN with 2 outputs and selector](CNN_Version2)
 * Solved the problem of ambigioutiy by introducing 2nd output and selector neuron
 
@@ -19,7 +19,7 @@ But with respect to the output value they are mapped on the two extrema of the s
 
 | Picture        | Value           | Picture        | Value           | Picture        | Value           | 
 | -------------- |:---------------:| -------------- |:---------------:| -------------- |:-------------:| 
-| <img src="./images/zeiger_97.jpg" width="80"> | 9.7 | <img src="./images/zeiger_02.jpg" width="80"> | 0.2 |<img src="./images/zeiger_00_11.jpg" width="80"> | 1.0 or 0.0 ?|
+| <img src="./images/zeiger_97.jpg" width="80"> | 0.97 | <img src="./images/zeiger_02.jpg" width="80"> | 0.02 |<img src="./images/zeiger_00_11.jpg" width="80"> | 1.0 or 0.0 ?|
 
 
 A standard metric would measure a maximum difference between picture 1 and picture 2. For the last picture it is even for a human eye not possible to distingues if it's rather to the left or to the right.
