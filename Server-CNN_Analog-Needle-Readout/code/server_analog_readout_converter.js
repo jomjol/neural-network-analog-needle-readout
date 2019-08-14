@@ -26,15 +26,18 @@ var abfrage = function(req, res) {
             file_download.end();
 
             ImageResize("./image_tmp/original.jpg", "./image_tmp/resize.jpg");
+            images = [];
+            images[0] = "./image_tmp/original.jpg"
      
-            readNeedle.AnalogReadout('./image_tmp/resize.jpg').then(result => {
-                console.log('Counter Readout: ' + result);
+//            readNeedle.AnalogReadout('./image_tmp/resize.jpg').then(result => {
+            readNeedle.Readout(images).then(result => {
+                console.log('Counter Readout: ' + result[0]);
 
                 res.writeHead(200, {'Content-Type': 'text/html'});
                 var txt = "";
                 txt += 'Original: <p><img src=/image_tmp/original.jpg></img><p>';
                 txt += 'Resize (32x32): <p><img src=/image_tmp/resize.jpg></img><p>';
-                txt += "Counter_Readout:\t" + result.toFixed(1);
+                txt += "Counter_Readout:\t" + result[0].toFixed(1);
 
                 res.end(txt);}
                 )
