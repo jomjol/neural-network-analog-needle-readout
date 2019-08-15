@@ -7,6 +7,8 @@ Details on setup and training of the CNN neural network
 * Problem with pointers pointing straight updwards (12 o'clock) due to ambigioutiy of 1.0 and 0.0 in the output
 ##### [2.0 CNN with 2 outputs and selector](CNN_Version2)
 * Solved the problem of ambigioutiy by introducing 2nd output and selector neuron
+##### [2.1 CNN with 2 outputs and selector](CNN_Version2)
+* Improve stability and accuracy by increasing neurons in last layer from 32 to 48 and change the activation function to "relu" instead of "linear"
 
 ## Software Environment
 The training is done using Keras in a python environment. For training purpuses the code is documented in Jupyter notebooks. The environment is setup using Ananconda with Python 3.7.
