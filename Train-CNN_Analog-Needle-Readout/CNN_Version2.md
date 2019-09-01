@@ -4,7 +4,7 @@ Details on setup and training of the CNN neural network
 ## Network Structure
 The network consists of several Conv2D, MaxPooling and Flatten Layers:
 
-<img src="./images/cnn_structure_version.png">
+<img src="./images/cnn_structure.png">
 
 
 ## Training Data
