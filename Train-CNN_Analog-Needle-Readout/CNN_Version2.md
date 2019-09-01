@@ -4,7 +4,7 @@ Details on setup and training of the CNN neural network
 ## Network Structure
 The network consists of several Conv2D, MaxPooling and Flatten Layers:
 
-<img src="./images/cnn_structure_version2.png">
+<img src="./images/cnn_structure_version.png">
 
 
 ## Training Data
@@ -41,5 +41,5 @@ Checking the combinded output by the deviation by a comparison to the label show
 ### Deviation from expected value
 <img src="./images/deviation.png" width="300">
 
-Checking the combinded output by the deviation by a comparison to the label shows, that the error is very small. The statistic shows an average value of 0.05%+/-1.4% with a maximum deviation of 8%. With respect to the pointer, that means that the error is in the subdigit range in the maximum (< 10%).
+Checking the deviation by a comparison to the label shows, that the error is very small. The statistic shows an average value of 0.0%+/-0.7% with a maximum deviation of 2.5%. With respect to the pointer, that means that the error is in the subdigit range in the maximum +/-0.25 over the full range.
 
