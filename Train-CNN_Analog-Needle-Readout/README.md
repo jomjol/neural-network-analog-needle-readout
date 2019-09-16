@@ -1,13 +1,10 @@
 # Training the CNN neural network
 Details on setup and training of the CNN neural network for detecting the value of an analog meter with a read pointer.
 
-## Version
-##### 1.x.y Initial Version
-* Handling of periodic nature with differnt non continious strategies (switching of output neurons, introduction of periodic loss instead of mean square, ...)
-* Improve learning by stepwise training strategie and adaption of neutral network structure / size
-neuron
-##### 2.0.0 Handle periodic nature with trigonometric angle functions
-* Adaption of neural network output to sinus and cosinus of pointer angle. Calculation of angle by arctan as unique function of full roation --> removal incontinuity at output neuron.
+### Current Version 2.1.0
+* Increased precision by handwise relabeling of the input
+* Addtional training images from different illuminatin (ESP32-CAM)
+### [Overview older Versions](Versions.md)
 
 ## Software Environment
 The training is done using Keras in a python environment. For training purpuses the code is documented in Jupyter notebooks. The environment is setup using Ananconda with Python 3.7.

@@ -36,10 +36,9 @@ The results show the expected behaviour:
 | <img src="./images/out_sin_cos.png" width="300"> | <img src="./images/out_org_pred.png" width="300"> |
 
 
-Checking the combinded output by the deviation by a comparison to the label shows, that the error is very small. The statistic shows an average value of 0.05%+/-1.4% with a maximum deviation of 8%. With respect to the pointer, that means that the error is in the subdigit range in the maximum (< 10%).
-
 ### Deviation from expected value
 <img src="./images/deviation.png" width="300">
 
-Checking the deviation by a comparison to the label shows, that the error is very small. The statistic shows an average value of 0.0%+/-0.7% with a maximum deviation of 2.5%. With respect to the pointer, that means that the error is in the subdigit range in the maximum +/-0.25 over the full range.
+Checking the deviation by a comparison to the label shows, that the error is very small. The statistic shows an average value of 0.0%+/-1.1% with a maximum deviation of 3.8%. With respect to the pointer, that means that the error is in the subdigit range in the maximum +/-0.38 over the full range. Part of this error is also caused by a uncetainty in the manual labeling.
+Taking this into account, the result is fully sufficient to be robust for continious readout of analog meters.
 
