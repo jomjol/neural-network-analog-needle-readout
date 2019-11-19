@@ -23,8 +23,11 @@ Using the Ananconda installation for installation:
 
 ### Step 4- Activate Jupyter Notebooks
 Go to tab "Home":
-<img src="./images/iypiter_activate.png">
+
+<img src="./images/iypiter_activate.png" width="150">
+
 and install the Jupyter-Environment:
+
 <img src="./images/iypiter_install.png">
 
 
