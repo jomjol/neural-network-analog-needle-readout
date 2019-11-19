@@ -1,9 +1,9 @@
 # Training the CNN neural network
 Details on setup and training of the CNN neural network for detecting the value of an analog meter with a read pointer.
 
-### Current Version 2.1.0
-* Increased precision by handwise relabeling of the input
-* Addtional training images from different illuminatin (ESP32-CAM)
+##### 4.0.0 Current Version - Tensorflow 2.0
+* Image processing changed to Pillow (remove OpenCV)
+* Usage of Tensorflow 2.0 for training
 ### [Overview older Versions](Versions.md)
 
 ## Software Environment
