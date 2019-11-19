@@ -9,7 +9,7 @@ Details on setup and training of the CNN neural network for detecting the value 
 ## Software Environment
 The training is done using Keras in a python environment. For training purpuses the code is documented in Jupyter notebooks. The environment is setup using Ananconda with Python 3.7.
 
-A step-by-step instruction for setting up an environemnt in Windows can be found here: [Training-Setup-Windows](Training-Setup-Windows)
+A step-by-step instruction for setting up an environemnt in Windows can be found here: [Training-Setup-Windows.md](Training-Setup-Windows.md)
 
 ## Basic Problem of ambiguous input to output mapping
 
