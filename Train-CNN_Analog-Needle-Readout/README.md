@@ -9,6 +9,8 @@ Details on setup and training of the CNN neural network for detecting the value 
 ## Software Environment
 The training is done using Keras in a python environment. For training purpuses the code is documented in Jupyter notebooks. The environment is setup using Ananconda with Python 3.7.
 
+A step-by-step instruction for setting up an environemnt in Windows can be found here: [Training-Setup-Windows](Training-Setup-Windows)
+
 ## Basic Problem of ambiguous input to output mapping
 
 A very basic problem in this kind of data evaluation is the periodic nature of an analog counter. The images of a counter pointing to an value of 9.9 is very similar to a picture pointing to 0.0.
