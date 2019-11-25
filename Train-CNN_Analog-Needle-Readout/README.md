@@ -1,6 +1,8 @@
 # Training the CNN neural network
 Details on setup and training of the CNN neural network for detecting the value of an analog meter with a read pointer.
 
+#### 4.1.0 Current Version - Tensorflow 2.0
+* Training of the network with a second type of analog counters (different pointer)
 #### 4.0.0 Current Version - Tensorflow 2.0
 * Image processing changed to Pillow (remove OpenCV)
 * Usage of Tensorflow 2.0 for training
