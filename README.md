@@ -3,6 +3,12 @@ Training and using a neural network to read out the value of an analog display -
 
 The readout is used in a water meter measurement system. An overview can be found here: [https://github.com/jomjol/water-meter-measurement-system](https://github.com/jomjol/water-meter-measurement-system)
 
+#### 5.0.0 Current Version - Tensorflow 2.0
+* Training with new picture from iobroker users
+* Removal of standalone server - (included in main project)Training of additional digital number (provided from iobroker users)
+
+#### [Overview older Versions](Versions.md)
+
 ## Problem to solve
 
 An analog needle displays needs to be read out and transfered to digital values as  input for a house automization project. One can do that with classical image processing. Here a neural network approach is shown. This should be more robust for small changes in illumination and image quality and also it was a good training and practise to get into neural networks (training and usage). :-)
@@ -44,22 +50,6 @@ The training is descibed in detail in the subfolder [Train-CNN_Analog-Needle-Rea
 
 The trained network is stored in the Keras H5-format and used as an input for a simple usage
 
-## Using the trained network
-
-### Server Usage
-
-The setup and structure of the server is described in the subfolder [Server-CNN_Analog-Needle-Readout](Server-CNN_Analog-Needle-Readout)
-
-The server is listening to port 3000 and accepts requests in the following syntac:
-
-http://server-ip:3000/?url=http://picture-server/image.jpg
-
-* server-ip: address of the node-server running the script
-* parameter "url": url to the picture to be analysed 
-
-The output is the following:
-
-   <img src="./images/server_output.png" width="400">
    
 ## Investigations on CNN-Parameters
 This CNN gives a great playground to investigate the influence of different parameteres like number of layers, size of single layers, ...
