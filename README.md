@@ -3,6 +3,8 @@ Training and using a neural network to read out the value of an analog display -
 
 The readout is used in a water meter measurement system. An overview can be found here: [https://github.com/jomjol/water-meter-measurement-system](https://github.com/jomjol/water-meter-measurement-system)
 
+### Versions
+
 #### 5.0.0 Current Version - Tensorflow 2.0
 * Training with new picture from iobroker users
 * Removal of standalone server - (included in main project)Training of additional digital number (provided from iobroker users)
@@ -46,14 +48,14 @@ The project consists of two parts:
 
 The training is done using Keras in a python environment. For training purpuses the code is documented in Jupyter notebooks. The environment is setup using Ananconda with Python 3.7[1]. 
 
-The training is descibed in detail in the subfolder **[How to train the network](Train_Network.md)**.
+The training is descibed in detail in: **[How to train the network](Train_Network.md)**.
 
 The trained network is stored in the Keras H5-format and used as an input for a simple usage
 
    
 ## Investigations on CNN-Parameters
-This CNN gives a great playground to investigate the influence of different parameteres like number of layers, size of single layers, ...
-First "investigations" can be found in the subdirectory background_info within the training section: [/Train-CNN_Analog-Needle-Readout/background_info/](/Train-CNN_Analog-Needle-Readout/background_info/)
+This CNN gives a great playground to investigate the influence of different parameters like number of layers, size of single layers, ...
+First "investigations" can be found in the subdirectory background_info within the training section: [/background_info/](/background_info/)
 
 
 Hopefully you have fun with neural networks and find this usefull. 

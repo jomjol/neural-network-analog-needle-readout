@@ -1,4 +1,9 @@
 ## Version
+#### 4.1.0 Current Version - Tensorflow 2.0
+* Training of the network with a second type of analog counters (different pointer)
+#### 4.0.0 Current Version - Tensorflow 2.0
+* Image processing changed to Pillow (remove OpenCV)
+* Usage of Tensorflow 2.0 for training
 ##### 4.0.0 Change to Pillow Image Library
 * Image processing changed to Pillow (remove OpenCV)
 ##### 3.0 Version number skipped due to consistency with other programm part
