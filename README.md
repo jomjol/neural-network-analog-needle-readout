@@ -46,7 +46,7 @@ The project consists of two parts:
 
 The training is done using Keras in a python environment. For training purpuses the code is documented in Jupyter notebooks. The environment is setup using Ananconda with Python 3.7[1]. 
 
-The training is descibed in detail in the subfolder [Train-CNN_Analog-Needle-Readout](Train-CNN_Analog-Needle-Readout).
+The training is descibed in detail in the subfolder **[How to train the network](Train_Network.md)**.
 
 The trained network is stored in the Keras H5-format and used as an input for a simple usage
 
