@@ -5,9 +5,11 @@ The readout is used in a water meter measurement system. An overview can be foun
 
 ### Versions
 
-#### 5.0.0 Current Version - Tensorflow 2.0
+#### 6.0.0 Current Version - Tensorflow 2.1 (2020-04-18)
+* Updated to Tensorflow 2.1
+* additional export to TF-Lite Version (.tflite)
 * Training with new picture from iobroker users
-* Removal of standalone server - (included in main project)Training of additional digital number (provided from iobroker users)
+
 
 #### [Overview older Versions](Versions.md)
 

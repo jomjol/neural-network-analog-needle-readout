@@ -1,4 +1,7 @@
 ## Version
+#### 5.0.0 Current Version - Tensorflow 2.0
+* Training with new picture from iobroker users
+* Removal of standalone server - (included in main project)Training of additional digital number (provided from iobroker users)
 #### 4.1.0 Current Version - Tensorflow 2.0
 * Training of the network with a second type of analog counters (different pointer)
 #### 4.0.0 Current Version - Tensorflow 2.0
