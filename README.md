@@ -4,8 +4,9 @@ Training and using a neural network to read out the value of an analog display -
 The readout is used in a water meter measurement system. An overview can be found here: [https://github.com/jomjol/water-meter-measurement-system](https://github.com/jomjol/water-meter-measurement-system)
 
 ### Versions
-
-#### 6.0.0 Current Version - Tensorflow 2.1 (2020-04-18)
+#### 6.0.1 Improved Network Traininng (2020-04-20)
+* Retraining of CNN with slightly improved image classification
+#### 6.0.0 Tensorflow 2.1 (2020-04-18)
 * Updated to Tensorflow 2.1
 * additional export to TF-Lite Version (.tflite)
 * Training with new picture from iobroker users
