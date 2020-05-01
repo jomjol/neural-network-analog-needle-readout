@@ -4,6 +4,9 @@ Training and using a neural network to read out the value of an analog display -
 The readout is used in a water meter measurement system. An overview can be found here: [https://github.com/jomjol/water-meter-measurement-system](https://github.com/jomjol/water-meter-measurement-system)
 
 ### Versions
+#### 6.1.0 Added new analog counter type (thanks to muerzi@iobroker.net) (2020-01-05)
+* Retraining of CNN with new analog counter type
+* introduction of new tlite-format --> will be preferred in future versions
 #### 6.0.1 Improved Network Traininng (2020-04-20)
 * Retraining of CNN with slightly improved image classification
 #### 6.0.0 Tensorflow 2.1 (2020-04-18)
