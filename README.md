@@ -7,17 +7,6 @@ The readout is used in a water meter measurement system. An overview can be foun
 #### 6.2.0 Added new analog counter type (2020-06-19)
 * Retraining of CNN with new analog counter type
 * Removal of h5-File
-### Versions
-#### 6.1.0 Added new analog counter type (thanks to muerzi@iobroker.net) (2020-01-05)
-* Retraining of CNN with new analog counter type
-* introduction of new tlite-format --> will be preferred in future versions
-#### 6.0.1 Improved Network Traininng (2020-04-20)
-* Retraining of CNN with slightly improved image classification
-#### 6.0.0 Tensorflow 2.1 (2020-04-18)
-* Updated to Tensorflow 2.1
-* additional export to TF-Lite Version (.tflite)
-* Training with new picture from iobroker users
-
 
 #### [Overview older Versions](Versions.md)
 
@@ -62,7 +51,7 @@ The training is descibed in detail in: **[How to train the network](Train_Networ
 
 The trained network is stored in the Keras H5-format and used as an input for a simple usage
 
-   
+
 ## Investigations on CNN-Parameters
 This CNN gives a great playground to investigate the influence of different parameters like number of layers, size of single layers, ...
 First "investigations" can be found in the subdirectory background_info within the training section: [/background_info/](/background_info/)
@@ -75,8 +64,8 @@ Hopefully you have fun with neural networks and find this usefull.
 Best regards,
 
 **jomjol**
-  
-  
+
+
 [1]: The following book is found very usefull for background, basic setting and different approaches:  
 Mattheiu Deru and Alassane Ndiaye: Deep Learning with TensorFlow, Keras, und Tensorflow.js
 

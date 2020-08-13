@@ -1,4 +1,19 @@
 ## Version
+#### 6.1.0 Added new analog counter type (thanks to muerzi@iobroker.net) (2020-01-05)
+
+* Retraining of CNN with new analog counter type
+* introduction of new tlite-format --> will be preferred in future versions
+
+#### 6.0.1 Improved Network Traininng (2020-04-20)
+
+* Retraining of CNN with slightly improved image classification
+
+#### 6.0.0 Tensorflow 2.1 (2020-04-18)
+
+* Updated to Tensorflow 2.1
+* additional export to TF-Lite Version (.tflite)
+* Training with new picture from iobroker users
+
 #### 5.0.0 Current Version - Tensorflow 2.0
 * Training with new picture from iobroker users
 * Removal of standalone server - (included in main project)Training of additional digital number (provided from iobroker users)
