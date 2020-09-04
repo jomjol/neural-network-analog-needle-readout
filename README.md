@@ -4,6 +4,12 @@ Training and using a neural network to read out the value of an analog display -
 The readout is used in a water meter measurement system. An overview can be found here: [https://github.com/jomjol/water-meter-measurement-system](https://github.com/jomjol/water-meter-measurement-system)
 
 ### Versions
+
+#### 6.3.0 Added new analog counter type (2020-04-09)
+
+* Retraining of CNN with new images
+* Refining training image classification (especially in range 5.0 - 9.9)
+
 #### 6.2.0 Added new analog counter type (2020-06-19)
 * Retraining of CNN with new analog counter type
 * Removal of h5-File
