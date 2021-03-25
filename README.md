@@ -5,6 +5,11 @@ The readout is used in a water meter measurement system. An overview can be foun
 
 ### Versions
 
+#### 7.0.0 Added new analog counter type (2021-03-25)
+
+* Retraining of CNN with new images
+* Changed file naming
+
 #### 6.3.0 Added new analog counter type (2020-04-09)
 
 * Retraining of CNN with new images
