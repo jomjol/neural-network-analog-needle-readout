@@ -25,7 +25,7 @@ The readout is used in a water meter measurement system. An overview can be foun
 
 An analog needle displays needs to be read out and transfered to digital values as  input for a house automization project. One can do that with classical image processing. Here a neural network approach is shown. This should be more robust for small changes in illumination and image quality and also it was a good training and practise to get into neural networks (training and usage). :-)
 
-The analog meter consists of a scala from 0 to 9, indicator is a clear red pointer showing to the current value. A closer locks shows, that there are two types, with and without tick marks at 0.5 divisions (compare picture 1 and 2). This is ignored in the following.
+The analog meter consists of a scala from 0 to 9, indicator is a clear red pointer showing to the current value. A closer locks shows, that there are two types, with and without tick marks at 0.5 divisions (compare picture 1 and 2). This is ignored in the following.  
 
 <img src="./images/pointer1.jpg" width="80">  <img src="./images/pointer7.jpg" width="80"> 
 
