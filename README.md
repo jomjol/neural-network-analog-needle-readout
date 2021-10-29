@@ -5,6 +5,26 @@ The readout is used in a water meter measurement system. An overview can be foun
 
 ### Versions
 
+#### 9.0.0 Update Tensorflow (2021-10-29)
+
+* Rollback to Tensorflow 2.4
+* New pointer type integrated (half side red)
+
+#### 8.0.0 Update Tensorflow (2021-10-02)
+
+* Update to Tensorflow 2.6
+
+* License change (remove MIT license, remark see below)
+
+  
+
+**ATTENTION: LICENSE CHANGE - removal of MIT License.** 
+
+- Currently no licence published - copyright belongs to author
+- If you are interested in a commercial usage or dedicated versions please contact the developer
+
+
+
 #### 7.0.0 Added new analog counter type (2021-03-25)
 
 * Retraining of CNN with new images
