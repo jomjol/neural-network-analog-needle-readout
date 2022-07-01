@@ -5,6 +5,11 @@ The readout is used in a water meter measurement system. An overview can be foun
 
 ### Versions
 
+#### 10.0.0 Reactivate (2021-07-01)
+
+* New Images
+* Using Tensorflow 2.9
+
 #### 9.1.0 New Images (2021-11-27)
 
 * New Training
