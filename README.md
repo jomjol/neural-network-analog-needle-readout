@@ -5,6 +5,13 @@ The readout is used in a water meter measurement system. An overview can be foun
 
 ### Versions
 
+### 11.0.0 new CNN100 categorical
+
+* relabeled images for better accuracy (used <https://github.com/haverland/collectmeteranalog>)
+* new categorical model (ana_i32s100_dropout)
+* Comparison of all TFLite models (Compare_all_tflite.ipynb)
+
+
 #### 10.0.0 Reactivate (2021-07-01)
 
 * New Images
