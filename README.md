@@ -5,6 +5,10 @@ The readout is used in a water meter measurement system. An overview can be foun
 
 ### Versions
 
+### 11.0.1 New Images
+
+* Updated labeling convention
+
 ### 11.0.0 new CNN100 categorical
 
 * relabeled images for better accuracy (used <https://github.com/haverland/collectmeteranalog>)
