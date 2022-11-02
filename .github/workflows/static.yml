@@ -40,8 +40,8 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: '.'
-#          path: './generated-overview/*'
+#          path: '.'
+          path: './generated-overview'
 
       - name: Deploy to GitHub Pages
         id: deployment
