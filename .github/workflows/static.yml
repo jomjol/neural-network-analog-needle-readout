@@ -34,13 +34,15 @@ jobs:
         uses: actions/configure-pages@v2
 
       - name: Generate Overview
-        run: mkdir -p ./generated-overview; echo "test" > ./generated-overview/index.html;
+        run: mkdir -p ./generated-overview; echo "test" > ./generated-overview/index.html; ls -l; ls -l ./generated-overview
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: './generated-overview/*'
+          path: '.'
+#          path: './generated-overview/*'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
