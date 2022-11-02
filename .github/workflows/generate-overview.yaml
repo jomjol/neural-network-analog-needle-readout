@@ -33,15 +33,21 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v2
 
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
       - name: Generate Overview
-        run: mkdir -p ./generated-overview; echo "test" > ./generated-overview/index.html; ls -l; ls -l ./generated-overview
+        run: python generate-overview.py
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
 #          path: '.'
-          path: './generated-overview'
+          path: './html_output'
 
       - name: Deploy to GitHub Pages
         id: deployment
