@@ -3,16 +3,26 @@ import math
 from PIL import Image, ImageOps
 import logging
 
-logging.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.DEBUG)
+
+
+def main():
+    logging.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.DEBUG)
+
+
+    values = ["0.0", "1.0", "2.0", "3.0", "4.0", "5.0", "6.0", "7.0", "8.0", "9.0"]
+    path = './data_raw_all'
+
+    for value in values:
+        generate(path, value, 10)
+
 
 
 def concat_images(image_paths, size, shape=None):
     # Open images and resize them
     width, height = size
-   # width = width * 2
     images = map(Image.open, image_paths)
-    
-    images = [ImageOps.expand(image, border=2,fill='white')
+
+    images = [ImageOps.expand(image, border=10,fill='white')
               for image in images]
     
     images = [ImageOps.fit(image, size, Image.ANTIALIAS) 
@@ -41,12 +51,9 @@ def generate(path, prefix, cols):
     # Get list of image paths
     image_paths = [os.path.join(path, f) 
                 for f in os.listdir(path) if (f.startswith(prefix) and f.endswith('.jpg'))]
-
-
-    #image_paths = image_paths[:11]
+    image_paths.sort()
 
     logging.debug("Found %d images." % len(image_paths))
-
 
     rows = math.ceil(float(len(image_paths)) / cols)
 
@@ -58,12 +65,5 @@ def generate(path, prefix, cols):
     image.save("./html_output/analog-" + prefix + ".jpg", 'JPEG')
 
 
-
-
-values = ["0.0", "1.0", "2.0", "3.0", "4.0", "5.0", "6.0", "7.0", "8.0", "9.0"]
-path = './data_raw_all'
-
-for value in values:
-    generate(path, value, 5)
-
-
+if __name__ == "__main__":
+     main()
