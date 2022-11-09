@@ -3,7 +3,7 @@ name: Generate Overview Page
 
 on:
   push:
-    branches: ["master"]
+    branches: ["main"]
 
   workflow_dispatch:
 
