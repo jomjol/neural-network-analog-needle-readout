@@ -5,6 +5,10 @@ The readout is used in a water meter measurement system. An overview can be foun
 
 ### Versions
 
+### 11.0.3 better quanization
+* new images
+* quantization in float16 instead of int8 weights
+
 ### 11.0.1 New Images
 
 * Updated labeling convention
