@@ -5,6 +5,17 @@ The readout is used in a water meter measurement system. An overview can be foun
 
 ### Versions
 
+
+### 11.0.5 better quanization
+* new images
+* quantization revert float16, because the edgeAI can not handle it
+* quantization fix - use complete dataset as representive
+
+
+### 11.0.3 better quanization
+* new images
+* quantization in float16 instead of int8 weights
+
 ### 11.0.1 New Images
 
 * Updated labeling convention
