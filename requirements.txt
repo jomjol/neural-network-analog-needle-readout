@@ -4,6 +4,6 @@ matplotlib
 scipy
 scikit-learn
 pandas
-tensorflow
+tensorflow >= 2.10
 tensorflow-model-optimization
 opencv-python
