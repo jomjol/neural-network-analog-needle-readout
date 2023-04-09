@@ -1,3 +1,4 @@
 .ipynb_checkpoints
 .DS_Store
 html_output/*.jpg
+data_resize_all/*
