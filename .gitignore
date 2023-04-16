@@ -1,3 +1,5 @@
 .ipynb_checkpoints
 .DS_Store
 html_output/*.jpg
+*best.h5
+*false_predicted.csv
