@@ -3,3 +3,4 @@
 html_output/*.jpg
 *best.h5
 *false_predicted.csv
+data_resize_all/*
