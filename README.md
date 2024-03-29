@@ -5,6 +5,11 @@ The readout is used in a water meter measurement system. An overview can be foun
 
 ### Versions
 
+### 13.0.0 Update image preprocessing & Clean up
+
+* remove doubled images -> much faster and balanced learning
+* Improve image preprocessing quality to avoid artifacts to be present during testing
+
 ### 12.1.0 new images
 
 * new images
