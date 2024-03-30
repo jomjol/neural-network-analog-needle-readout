@@ -1,4 +1,8 @@
 ## Version
+#### 12.1.0 Added new analog counter (2024-03-25)
+
+* Retraining of CNN with new analog counter type
+
 #### 6.1.0 Added new analog counter type (thanks to muerzi@iobroker.net) (2020-01-05)
 
 * Retraining of CNN with new analog counter type

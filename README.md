@@ -7,6 +7,15 @@ An overview of all training images can be found at [jomjol.github.io/neural-netw
 
 # Versions
 
+### 13.0.0 Update image preprocessing & Clean up
+
+* remove doubled images -> much faster and balanced learning
+* Improve image preprocessing quality to avoid artifacts to be present during testing
+
+### 12.1.0 new images
+
+* new images
+
 ### 12.0.9 new images
 
 * new images
