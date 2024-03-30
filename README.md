@@ -1,9 +1,11 @@
 # neural-network-analog-needle-readout
 Training and using a neural network to read out the value of an analog display - example including small node server for demonstration
 
-The readout is used in a water meter measurement system. An overview can be found here: [https://github.com/jomjol/water-meter-measurement-system](https://github.com/jomjol/water-meter-measurement-system)
+The readout is used in the [AI-on-the-edge-device](https://github.com/jomjol/AI-on-the-edge-device) project.
 
-### Versions
+An overview of all training images can be found at [jomjol.github.io/neural-network-analog-needle-readout](https://jomjol.github.io/neural-network-analog-needle-readout).
+
+# Versions
 
 ### 13.0.0 Update image preprocessing & Clean up
 
@@ -141,10 +143,5 @@ Best regards,
 **jomjol**
 
 
-[1]: The following book is found very usefull for background, basic setting and different approaches:  
+[1]: The following book is found very useful for background, basic setting and different approaches:  
 Mattheiu Deru and Alassane Ndiaye: Deep Learning with TensorFlow, Keras, und Tensorflow.js
-
-
-
-
-
