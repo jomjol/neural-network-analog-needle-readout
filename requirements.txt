@@ -7,3 +7,4 @@ pandas
 tensorflow >= 2.10
 tensorflow-model-optimization
 opencv-python
+imagehash
