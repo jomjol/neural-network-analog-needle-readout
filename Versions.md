@@ -1,4 +1,10 @@
 ## Version
+#### 14.0.0 Added new analog counter (2024-12-27)
+
+* Cleanup of images: remove similar images **after** resize, much faster training
+* Correct error in quantized tflite conversion: now _q.tflite is also working
+* Updated Tensorflow training environment to v2.18
+
 #### 12.1.0 Added new analog counter (2024-03-25)
 
 * Retraining of CNN with new analog counter type
