@@ -7,6 +7,11 @@ An overview of all training images can be found at [jomjol.github.io/neural-netw
 
 # Versions
 
+### 16.0.0 - 18.04.2025 - Implement Augmentation, DropOut
+
+* Extended Augmentation implementation
+* Extend Networkfile by DropOuts
+
 ### 14.0.0 Update image preprocessing & Clean up
 
 * remove doubled images **after** resize -> much faster and balanced learning
