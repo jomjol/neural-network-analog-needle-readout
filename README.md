@@ -17,7 +17,9 @@ An overview of all training images can be found at [jomjol.github.io/neural-netw
 * remove doubled images **after** resize -> much faster and balanced learning
 * Update Tensorflow to v2.18
 
-### 12.1.0 new images13.0.0 Update image preprocessing & Clean up
+### 12.1.0 new images
+
+### 13.0.0 Update image preprocessing & Clean up
 
 * remove doubled images -> much faster and balanced learning
 * Improve image preprocessing quality to avoid artifacts to be present during testing
