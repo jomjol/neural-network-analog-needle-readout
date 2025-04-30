@@ -43,7 +43,7 @@ jobs:
           pip install --upgrade pillow
 
       - name: Generate Overview
-        run: python ./gh-pages/generate-overview.py
+        run: python ./src/generate-overview.py
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
