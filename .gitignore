@@ -1,6 +1,6 @@
-.ipynb_checkpoints
+.vscode
 .DS_Store
-html_output/*.jpg
-*best.h5
-*false_predicted.csv
-data_resize_all/*
+gh-pages/*.jpg
+data_resize_all/*.jpg
+jupyter/.ipynb_checkpoints
+jupyter/__pycache__
