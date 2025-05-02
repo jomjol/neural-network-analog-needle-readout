@@ -38,6 +38,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
+permissions:
+  contents: write
+  actions: write  # Required to run workflow_dispatch
+
 jobs:
   run-notebook:
     runs-on: ubuntu-latest
@@ -202,3 +206,14 @@ jobs:
         
         git pull --rebase
         git push
+
+    - name: Trigger compare-models workflow on current branch
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH_NAME: ${{ github.ref_name }}
+      run: |
+        curl -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer $GH_TOKEN" \
+          https://api.github.com/repos/${{ github.repository }}/actions/workflows/compare-models.yaml/dispatches \
+          -d "{\"ref\":\"$BRANCH_NAME\"}"
