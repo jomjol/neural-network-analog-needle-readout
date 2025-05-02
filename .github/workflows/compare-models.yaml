@@ -1,0 +1,89 @@
+name: Compare Models
+
+on:
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  run-notebook:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name != 'workflow_dispatch' || github.ref != 'refs/heads/main'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Cache virtual environment
+      uses: actions/cache@v4
+      with:
+        path: .venv
+        key: ${{ runner.os }}-venv-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-venv-
+
+    - name: Install dependencies
+      run: |
+        set -euxo pipefail
+
+        if [ ! -d "$PWD/.venv" ]; then
+          python -m venv "$PWD/.venv"
+        fi
+
+        source "$PWD/.venv/bin/activate"
+
+        pip install --upgrade pip
+        pip install jupyter papermill
+        pip install -r requirements.txt
+
+    - name: Prepare environment and validate input
+      run: |
+        set -euxo pipefail
+        
+        echo "RAWIMAGEDIR=data_raw_all" >> $GITHUB_ENV
+        echo "MODELDIR=models_tmp" >> $GITHUB_ENV
+
+        mkdir -p "$MODELDIR"
+
+    - name: Compare models
+      run: |
+        set -euxo pipefail
+        source "$PWD/.venv/bin/activate"
+
+        papermill 03_Compare_Models.ipynb /dev/null \
+          -p Input_Dir "${{ env.RAWIMAGEDIR }}" \
+          -p Save_Evaluation_Images True \
+          -p Output_Dir "${{ env.MODELDIR }}" \
+          --log-output --log-level INFO --progress-bar
+
+    - name: Add PNG images to models/README.md
+      run: |
+        echo -e "## Model Comparison\n" >> "models/README.md"
+
+        for img in $(ls "${{ env.MODELDIR }}"/*.png | sort); do
+          fname=$(basename "$img")
+          echo "![${fname}](./${fname})" >> "models/README.md"
+        done
+
+    - name: Commit README.md
+      uses: EndBug/add-and-commit@v9
+      with:
+        author_name: 'github-actions[bot]'
+        author_email: 'github-actions[bot]@users.noreply.github.com'
+        message: 'Update model comparison (/models/README.md)'
+        add: 'models/README.md'
+
+    - name: Push changes
+      run: |
+        git pull --rebase
+        git push
