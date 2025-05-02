@@ -1,4 +1,5 @@
-### Cleanup Repo 30.04.2025 --> Forked from main repo
+### Cleanup Repo - 30.04.2025
+ * Forked from main repo
 
 ### 16.0.0 - 18.04.2025 - Implement Augmentation, DropOut
 * Extended Augmentation implementation
@@ -9,7 +10,7 @@
 * Correct error in quantized tflite conversion: now _q.tflite is also working
 * Updated Tensorflow training environment to v2.18
 
-### 12.1.0 new images13.0.0 Update image preprocessing & Clean up
+### 13.0.0 Update image preprocessing & Clean up
 * remove doubled images -> much faster and balanced learning
 * Improve image preprocessing quality to avoid artifacts to be present during testing
 
