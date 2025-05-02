@@ -62,7 +62,7 @@ def generate(path, prefix, cols):
 
     # Create and save image grid
     image = concat_images(image_paths, (int(800/cols), int(800/cols)), (rows, cols))
-    image.save("./html_output/analog-" + prefix + ".jpg", 'JPEG')
+    image.save("./gh-pages/analog-" + prefix + ".jpg", 'JPEG')
 
 
 if __name__ == "__main__":
