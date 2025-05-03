@@ -1,0 +1,219 @@
+name: Train Model
+
+on:
+  workflow_dispatch:
+    inputs:
+      script_choice:
+        description: 'Select a notebook'
+        required: true
+        type: choice
+        options:
+          - "02_Train-CNN_ana-cont_s0.ipynb"
+          - "02_Train-CNN_ana-cont_s1.ipynb"
+          - "02_Train-CNN_ana-cont_s2.ipynb"
+          - "02_Train-CNN_ana-cont_s3.ipynb"
+          - "Custom Notebook Name"
+      custom_name:
+        description: 'Custom Notebook Name: Enter the full notebook name (optional)'
+        required: false
+        type: string
+      tflite_version:
+        description: 'Model Version: Enter model version (e.g. 0100 -> 01.00)'
+        required: true
+        type: string
+      rawimage_dir:
+        description: 'Raw Images Directory (optional, default: data_raw_all)'
+        required: false
+        type: string
+      commit_to_branch:
+        description: 'Commit result to actual branch?'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: write  # Required to run workflow_dispatch
+
+jobs:
+  run-notebook:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Cache virtual environment
+      uses: actions/cache@v4
+      with:
+        path: .venv
+        key: ${{ runner.os }}-venv-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-venv-
+
+    - name: Install dependencies
+      run: |
+        set -euxo pipefail
+
+        if [ ! -d "$PWD/.venv" ]; then
+          python -m venv "$PWD/.venv"
+        fi
+
+        source "$PWD/.venv/bin/activate"
+
+        pip install --upgrade pip
+        pip install jupyter nbconvert papermill
+        pip install -r requirements.txt
+
+    - name: Prepare environment and validate input
+      run: |
+        set -euxo pipefail
+
+        # Validate and resolve notebook name
+        if [[ "${{ github.event.inputs.script_choice }}" == "Custom Notebook Name" ]]; then
+          if [[ -z "${{ github.event.inputs.custom_name }}" ]]; then
+            echo "Error: Custom notebook name must be provided!"
+            exit 1
+          fi
+          notebook="${{ github.event.inputs.custom_name }}"
+          [[ "$notebook" != *.ipynb ]] && notebook="$notebook.ipynb"
+        else
+          notebook="${{ github.event.inputs.script_choice }}"
+        fi
+
+        if [[ ! -f "$notebook" ]]; then
+          echo "Error: Notebook '$notebook' not found!"
+          exit 1
+        fi
+
+        echo "NOTEBOOK=$notebook" >> $GITHUB_ENV
+        echo "NOTEBOOK_BASENAME=$(basename "$notebook" .ipynb)" >> $GITHUB_ENV
+        echo "NOTEBOOK_MODELTYPE=$(basename "$notebook" .ipynb | cut -c 14-)" >> $GITHUB_ENV
+
+        
+        # Set model version
+        version=${{ github.event.inputs.tflite_version }}
+        
+        # Check if the version is numeric
+        if [[ "$version" =~ ^[0-9]+$ ]]; then
+          # If the numeric version is shorter than 4 characters, pad with leading zeros
+          if [ ${#version} -lt 4 ]; then
+            version=$(printf "%04d" "$version")
+          fi
+        fi
+
+        echo "MODELVERSION=$version" >> $GITHUB_ENV
+
+        
+        # Prepare folders
+        echo "RAWIMAGEDIR=${{ github.event.inputs.rawimage_dir || 'data_raw_all' }}" >> $GITHUB_ENV
+        mkdir -p data_resize_all models_tmp
+        echo "DATASETDIR=data_resize_all" >> $GITHUB_ENV
+        echo "MODELDIR=models_tmp" >> $GITHUB_ENV
+
+    - name: Prepare image dataset
+      run: |
+        set -euxo pipefail
+        source "$PWD/.venv/bin/activate"
+
+        output_notebook="${{ env.MODELDIR }}/01_Image-Preparation_result_v${{ env.MODELVERSION }}.ipynb"
+
+        papermill 01_Image-Preparation.ipynb "$output_notebook" \
+          -p Input_Dir "${{ env.RAWIMAGEDIR }}" \
+          -p Output_Dir "${{ env.DATASETDIR }}" \
+          --log-output --log-level INFO --progress-bar
+        
+        jupyter nbconvert "$output_notebook" --to html --output-dir="${{ env.MODELDIR }}"
+
+    - name: Train model
+      run: |
+        set -euxo pipefail
+        source "$PWD/.venv/bin/activate"
+
+        output_notebook="${{ env.MODELDIR }}/${{ env.NOTEBOOK_BASENAME }}_result_v${{ env.MODELVERSION }}.ipynb"
+
+        papermill "${{ env.NOTEBOOK }}" "$output_notebook" \
+          -p TFlite_Version "${{ env.MODELVERSION }}" \
+          -p Output_Dir "${{ env.MODELDIR }}" \
+          --log-output --log-level INFO --progress-bar
+        
+        jupyter nbconvert "$output_notebook" --to html --output-dir="${{ env.MODELDIR }}"
+
+    - name: Compare models
+      run: |
+        set -euxo pipefail
+        source "$PWD/.venv/bin/activate"
+
+        output_notebook="${{ env.MODELDIR }}/03_Compare_Models_result_v${{ env.MODELVERSION }}.ipynb"
+
+        papermill 03_Compare_Models.ipynb "$output_notebook" \
+          -p Input_Dir "${{ env.RAWIMAGEDIR }}" \
+          --log-output --log-level INFO --progress-bar
+        
+        jupyter nbconvert "$output_notebook" --to html --output-dir="${{ env.MODELDIR }}"
+
+    - name: Upload model artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.NOTEBOOK_MODELTYPE }}_v${{ env.MODELVERSION }}
+        path: ${{ env.MODELDIR }}/
+
+    - name: Commit results to branch (if enabled)
+      if: ${{ github.event.inputs.commit_to_branch == 'true' && github.ref != 'refs/heads/main' }}
+      run: |
+        set -euxo pipefail
+
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+        mkdir -p models
+        subfolder=""
+        tflite_file=$(find "${{ env.MODELDIR }}" -name "*.tflite" | head -n 1)
+        [[ "$tflite_file" == *"ana-cont"* ]] && subfolder="ana-cont"
+        [[ "$tflite_file" == *"ana-class100"* ]] && subfolder="ana-class100"
+        dest="models${subfolder:+/$subfolder}"
+
+        find "${{ env.MODELDIR }}" -type f | while read -r filepath; do
+          filename=$(basename "$filepath")
+          ext="${filename##*.}"
+
+          if [[ "$ext" == "tflite" ]]; then
+            mkdir -p "$dest"
+            mv "$filepath" "$dest/"
+          else
+            detail_dir="$dest/training_details/${{ env.NOTEBOOK_MODELTYPE }}_v${{ env.MODELVERSION }}"
+            mkdir -p "$detail_dir"
+            mv "$filepath" "$detail_dir/"
+          fi
+        done
+
+        rm -rf "${{ env.MODELDIR }}"
+        
+        git add models/
+        git commit -m "Add models from ${{ env.NOTEBOOK_MODELTYPE }}_v${{ env.MODELVERSION }}"
+        
+        git pull --rebase
+        git push
+
+    - name: Trigger compare-models workflow on current branch
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH_NAME: ${{ github.ref_name }}
+      run: |
+        curl -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer $GH_TOKEN" \
+          https://api.github.com/repos/${{ github.repository }}/actions/workflows/compare-models.yaml/dispatches \
+          -d "{\"ref\":\"$BRANCH_NAME\"}"

@@ -5,105 +5,13 @@ The readout is used in the [AI-on-the-edge-device](https://github.com/jomjol/AI-
 
 An overview of all training images can be found at [jomjol.github.io/neural-network-analog-needle-readout](https://jomjol.github.io/neural-network-analog-needle-readout).
 
-# Versions
-
-### 16.0.0 - 18.04.2025 - Implement Augmentation, DropOut
-
-* Extended Augmentation implementation
-* Extend Networkfile by DropOuts
-
-### 14.0.0 Update image preprocessing & Clean up
-
-* remove doubled images **after** resize -> much faster and balanced learning
-* Update Tensorflow to v2.18
-
-### 13.0.0 Update image preprocessing & Clean up
-
-* remove doubled images -> much faster and balanced learning
-* Improve image preprocessing quality to avoid artifacts to be present during testing
-
-### 12.1.0 new images
-
-* new images
-
-### 12.0.9 new images
-
-* new images
-
-
-### 11.0.5 better quanization
-* new images
-* quantization revert float16, because the edgeAI can not handle it
-* quantization fix - use complete dataset as representive
-
-
-### 11.0.3 better quanization
-* new images
-* quantization in float16 instead of int8 weights
-
-### 11.0.1 New Images
-
-* Updated labeling convention
-
-### 11.0.0 new CNN100 categorical
-
-* relabeled images for better accuracy (used <https://github.com/haverland/collectmeteranalog>)
-* new categorical model (ana_i32s100_dropout/ana_i32s100dr-v1.0-q)
-* Comparison of all TFLite models (Compare_all_tflite.ipynb)
-
-
-#### 10.0.0 Reactivate (2021-07-01)
-
-* New Images
-* Using Tensorflow 2.9
-
-#### 9.1.0 New Images (2021-11-27)
-
-* New Training
-
-#### 9.0.0 Update Tensorflow (2021-10-29)
-
-* Rollback to Tensorflow 2.4
-* New pointer type integrated (half side red)
-
-#### 8.0.0 Update Tensorflow (2021-10-02)
-
-* Update to Tensorflow 2.6
-
-* License change (remove MIT license, remark see below)
-
-  
-
-**ATTENTION: LICENSE CHANGE - removal of MIT License.** 
-
-- Currently no licence published - copyright belongs to author
-- If you are interested in a commercial usage or dedicated versions please contact the developer
-
-
-
-#### 7.0.0 Added new analog counter type (2021-03-25)
-
-* Retraining of CNN with new images
-* Changed file naming
-
-#### 6.3.0 Added new analog counter type (2020-04-09)
-
-* Retraining of CNN with new images
-* Refining training image classification (especially in range 5.0 - 9.9)
-
-#### 6.2.0 Added new analog counter type (2020-06-19)
-* Retraining of CNN with new analog counter type
-* Removal of h5-File
-
-#### [Overview older Versions](Versions.md)
-
 ## Problem to solve
 
 An analog needle displays needs to be read out and transfered to digital values as  input for a house automization project. One can do that with classical image processing. Here a neural network approach is shown. This should be more robust for small changes in illumination and image quality and also it was a good training and practise to get into neural networks (training and usage). :-)
 
 The analog meter consists of a scala from 0 to 9, indicator is a clear red pointer showing to the current value. A closer locks shows, that there are two types, with and without tick marks at 0.5 divisions (compare picture 1 and 2). This is ignored in the following.  
 
-<img src="./images/pointer1.jpg" width="80">  <img src="./images/pointer7.jpg" width="80"> 
+<img src="./docs/images/pointer1.jpg" width="80">  <img src="./docs/images/pointer7.jpg" width="80"> 
 
 ## Neural Network Approach
 
@@ -117,7 +25,7 @@ Remark: technical the output is normalized to 1, so the expected value is betwee
 
 | Picture        | Value           | Picture        | Value           | Picture        | Value           | Picture        | Value           |
 | ------------- |:-------------:| ------------- |:-------------:|------------- |:-------------:| ------------- |:-------------:|
-| <img src="./images/pointer1.jpg" width="80"> | 1.6 | <img src="./images/pointer7.jpg" width="80"> | 7.4 |<img src="./images/pointer3.jpg" width="80"> | 3.5 | <img src="./images/pointer9.jpg" width="80"> | 9.2 |
+| <img src="./docs/images/pointer1.jpg" width="80"> | 1.6 | <img src="./docs/images/pointer7.jpg" width="80"> | 7.4 |<img src="./docs/images/pointer3.jpg" width="80"> | 3.5 | <img src="./docs/images/pointer9.jpg" width="80"> | 9.2 |
 
 
 ### Labeled Training Data
@@ -134,14 +42,14 @@ The project consists of two parts:
 
 The training is done using Keras in a python environment. For training purpuses the code is documented in Jupyter notebooks. The environment is setup using Ananconda with Python 3.7[1]. 
 
-The training is descibed in detail in: **[How to train the network](Train_Network.md)**.
+The training is descibed in detail in: **[How to train the network](./docs/Train_Network.md)**.
 
 The trained network is stored in the Keras H5-format and used as an input for a simple usage
 
 
 ## Investigations on CNN-Parameters
 This CNN gives a great playground to investigate the influence of different parameters like number of layers, size of single layers, ...
-First "investigations" can be found in the subdirectory background_info within the training section: [/background_info/](/background_info/)
+First "investigations" can be found in the subdirectory background_info within the training section: [Background Info/](./docs//background_info/)
 
 
 Hopefully you have fun with neural networks and find this usefull. 
