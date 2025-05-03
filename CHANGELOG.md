@@ -1,5 +1,5 @@
 ### 17.00 - 03-MAY-2025
-  * Implement new model approach
+  * Implement new approach for model `ana-cont`
     * Training in a single step
     * Adaptive learning rate
     * Early stopping of training
