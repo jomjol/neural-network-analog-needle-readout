@@ -1,4 +1,21 @@
-### Cleanup Repo - 02.05.2025
+### 17.00 - 03-MAY-2025
+  * Implement new approach for model `ana-cont`
+    * Training in a single step
+    * Adaptive learning rate
+    * Early stopping of training
+    * Augmentation, most probable ones, incl.
+      * white balance variances
+      * inverted images
+  * Adapted processing pipeline
+  * Image prepration / validation processing with LANCZOS interpolation
+  * Automate processing pipeline with github actions
+    * Add action to train model
+      * Models / results saved to artifacts and optional to `/models` folder
+    * Add action to compare models
+      * Result in `/models` folder and artifacts
+    * Add further actions for maintenance
+
+### Cleanup Repository - 02-MAY-2025
 
 ### 16.0.0 - 18.04.2025 - Implement Augmentation, DropOut
 * Extended Augmentation implementation
