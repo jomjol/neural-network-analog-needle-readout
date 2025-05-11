@@ -76,8 +76,13 @@ def plot_dataset_analog(data_iter, columns=9, rows=5):
     for i in range(1, columns*rows +1):
         img, label = next(data_iter)
         fig.add_subplot(rows, columns, i)
-        output = (np.arctan2(label[0][0], label[0][1])/(2*math.pi)) % 1
-        plt.title(str(round(output,2)))  # set title
+        if (label[0].size == 2):
+            output = str( round(
+                    10*(np.arctan2(label[0][0], label[0][1])/(2*math.pi)  % 1),2))
+        else: # ana-class100
+            nb_classes=100
+            output = (str(class_decoding(label[0].reshape(-1, nb_classes), nb_classes).reshape(-1)[0])) 
+        plt.title(output)  # set title
         plt.imshow(img[0].astype(np.uint8), aspect='1', extent=[0, 1, 0, 1])
         ax=plt.gca()
         ax.get_xaxis().set_visible(False)
