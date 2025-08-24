@@ -12,6 +12,8 @@ on:
           - "02_Train-CNN_ana-cont_s1.ipynb"
           - "02_Train-CNN_ana-cont_s2.ipynb"
           - "02_Train-CNN_ana-cont_s3.ipynb"
+          - "02_Train_CNN_ana-class100_s1.ipynb"
+          - "02_Train_CNN_ana-class100_s2.ipynb"
           - "Custom Notebook Name"
       custom_name:
         description: 'Custom Notebook Name: Enter the full notebook name (optional)'
