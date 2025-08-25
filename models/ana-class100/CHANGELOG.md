@@ -3,6 +3,7 @@
 
 ### 2.00 - 25-AUG-2025
 * Use same resize algorithm (mitchell-cubic) than in real environment (stb image library)
+* Train models using resized images loaded from RAM (instead of saving + loading from file, now part of training notebook)
 * Add new image duplicate filter function by image hash analysis (perceptual hash)
 * Harmonize and align processing pipeline for both algorithms by usage of centralized functions (easier to maintain)
 * Adapt GitHub Action to updated training pipeline
