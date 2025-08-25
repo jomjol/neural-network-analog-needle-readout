@@ -1,14 +1,15 @@
 
 ## Changelog: Model 'ana-class100' (Value by classification 0.0 - 9.9)
 
-### 1.91 - 25-AUG-2025
-* Add new image duplicate filter function (image hash)
-* Harmonize processing pipeline with `ana-cont` model
-* Adapt `ana-class100` models to updated processing pipeline (github actions)
-* Retrained models based on actual images dataset (new images)
+### 2.00 - 25-AUG-2025
+* Use same resize algorithm (mitchell-cubic) than in real environment (stb image library)
+* Add new image duplicate filter function by image hash analysis (perceptual hash)
+* Harmonize and align processing pipeline for both algorithms by usage of centralized functions (easier to maintain)
+* Adapt GitHub Action to updated training pipeline
+* Retrained models based on actual images dataset (new images added, provided by `#3892`, removed duplicates)
 
 ### 1.90 - 24-AUG-2025
-* Retrained models based on actual images dataset (new images, multiple duplicates)
+* Retrained models based on actual images dataset (new images added, provided by `#3892`, unhandled duplicates)
 
 ### 1.80 - 09-MAY-2025
 * Adapt `ana-class100` models to updated processing pipeline (github actions)
