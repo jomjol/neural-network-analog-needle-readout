@@ -24,3 +24,5 @@
 ![ana-cont_1800_s0_q.tflite.png](_comparison_images/ana-cont_1800_s0_q.tflite.png)
 ![ana-cont_1800_s1.tflite.png](_comparison_images/ana-cont_1800_s1.tflite.png)
 ![ana-cont_1800_s1_q.tflite.png](_comparison_images/ana-cont_1800_s1_q.tflite.png)
+![ana-cont_1801_s0.tflite.png](_comparison_images/ana-cont_1801_s0.tflite.png)
+![ana-cont_1801_s0_q.tflite.png](_comparison_images/ana-cont_1801_s0_q.tflite.png)
