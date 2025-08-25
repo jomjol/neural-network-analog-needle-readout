@@ -5,11 +5,13 @@
 * Train models using resized images loaded from RAM (instead of saving + loading from file, now part of training notebook)
 * Add new image duplicate filter function by image hash analysis (perceptual hash)
 * Harmonize and align processing pipeline for both algorithms by usage of centralized functions (easier to maintain)
+* Save false predicted file list (csv label file) in 'modern syntax' (Label verification / adjustment by using [collectmeteranalog](https://github.com/haverland/collectmeteranalog?tab=readme-ov-file#label-file-syntax) by haverland)
 * Adapt GitHub Action to updated training pipeline
 * Retrained models based on actual images dataset (new images added, provided by `#3892`, removed duplicates)
+* Moved outdated models to archive folder
 
 ### 18.00 - 24-AUG-2025
-* Retrained models based on actual images dataset (new images added, provided by `#3892`, unhandled duplicates)
+* Retrained models based on actual images dataset (new images added, provided by `#3892`, not yet fully handled duplicates)
 
 ### 17.00 - 03-MAY-2025
   * Implement new approach for model `ana-cont`
