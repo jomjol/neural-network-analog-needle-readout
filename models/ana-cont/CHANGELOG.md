@@ -1,5 +1,13 @@
 ## Changelog: Model 'ana-cont' (Value by angle)
 
+### 18.01 - 25-AUG-2025
+* Add new image duplicate filter function (image hash)
+* Harmonize processing pipeline with `ana-class100` model
+* Adapt `ana-cont` models to updated processing pipeline (github actions)
+* Retrained models based on actual images dataset (new images)
+
+### 18.00 - 24-AUG-2025
+* Retrained models based on actual images dataset (new images, multiple duplicates)
 
 ### 17.00 - 03-MAY-2025
   * Implement new approach for model `ana-cont`

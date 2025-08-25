@@ -5,6 +5,35 @@ import random
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import random
 
+
+def random_invert_image(x, probability_invert=0.2):
+    """
+    Invert an image with a given probability
+    """
+    if random.random() > probability_invert:
+        return x
+    return 255 - x  # Invert image
+
+
+def random_white_balance(x, strength_range=(0.8, 1.2)):
+    """
+    Simulates poor white balance by randomly scaling RGB channels independently.
+    strength_range controls how strong the color cast distortion is.
+    """
+    x = x.astype(np.float32)
+
+    # Random scaling for each channel (simulates color cast)
+    r_scale = np.random.uniform(*strength_range)
+    g_scale = np.random.uniform(*strength_range)
+    b_scale = np.random.uniform(*strength_range)
+
+    x[..., 0] *= r_scale  # Red channel
+    x[..., 1] *= g_scale  # Green channel
+    x[..., 2] *= b_scale  # Blue channel
+
+    return x
+
+
 def add_noise(img):
     '''Add random noise to an image'''
     VARIABILITY = 3

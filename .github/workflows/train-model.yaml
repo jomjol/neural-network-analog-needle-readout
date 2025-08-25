@@ -4,21 +4,27 @@ on:
   workflow_dispatch:
     inputs:
       script_choice:
-        description: 'Select a notebook'
+        description: 'Model Type: Select a model / notebook'
         required: true
         type: choice
         options:
-          - "02_Train-CNN_ana-cont_s0.ipynb"
-          - "02_Train-CNN_ana-cont_s1.ipynb"
-          - "02_Train-CNN_ana-cont_s2.ipynb"
-          - "02_Train-CNN_ana-cont_s3.ipynb"
-          - "02_Train_CNN_ana-class100_s1.ipynb"
-          - "02_Train_CNN_ana-class100_s2.ipynb"
+          - "02_Train-CNN_ana-cont.ipynb"
+          - "02_Train_CNN_ana-class100.ipynb"
           - "Custom Notebook Name"
       custom_name:
         description: 'Custom Notebook Name: Enter the full notebook name (optional)'
         required: false
         type: string
+      tflite_size:
+        description: 'Model Size: Select model size (Availability depending on model type)'
+        required: true
+        type: choice
+        options:
+          - "s0"
+          - "s1"
+          - "s2"
+          - "s3"
+        default: "s1"
       tflite_version:
         description: 'Model Version: Enter model version (e.g. 0100 -> 01.00)'
         required: true
@@ -56,14 +62,6 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-
-    - name: Cache virtual environment
-      uses: actions/cache@v4
-      with:
-        path: .venv
-        key: ${{ runner.os }}-venv-${{ hashFiles('requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-venv-
 
     - name: Install dependencies
       run: |
@@ -118,58 +116,68 @@ jobs:
 
         echo "MODELVERSION=$version" >> $GITHUB_ENV
 
-        
-        # Prepare folders
-        echo "RAWIMAGEDIR=${{ github.event.inputs.rawimage_dir || 'data_raw_all' }}" >> $GITHUB_ENV
-        mkdir -p data_resize_all models_tmp
+    - name: Prepare folders
+      run: |
+        set -euxo pipefail
+
+        RAWIMAGEDIR="${{ github.event.inputs.rawimage_dir }}"
+        RAWIMAGEDIR="${RAWIMAGEDIR:-data_raw_all}"
+        echo "RAWIMAGEDIR=$RAWIMAGEDIR" >> $GITHUB_ENV
+
         echo "DATASETDIR=data_resize_all" >> $GITHUB_ENV
         echo "MODELDIR=models_tmp" >> $GITHUB_ENV
+        mkdir -p data_resize_all models_tmp
+
+        DETAILS_PATH="models_tmp/training_details/${{ env.NOTEBOOK_MODELTYPE }}_${{ env.MODELVERSION }}_${{ github.event.inputs.tflite_size }}"
+        echo "TRAINING_DETAILS=$DETAILS_PATH" >> $GITHUB_ENV
+        mkdir -p "$DETAILS_PATH"
 
     - name: Prepare image dataset
       run: |
         set -euxo pipefail
         source "$PWD/.venv/bin/activate"
 
-        output_notebook="${{ env.MODELDIR }}/01_Image-Preparation_result_v${{ env.MODELVERSION }}.ipynb"
+        output_notebook="${{ env.TRAINING_DETAILS }}/01_Image-Preparation_${{ env.MODELVERSION }}_${{ github.event.inputs.tflite_size }}_result.ipynb"
 
         papermill 01_Image-Preparation.ipynb "$output_notebook" \
           -p Input_Dir "${{ env.RAWIMAGEDIR }}" \
           -p Output_Dir "${{ env.DATASETDIR }}" \
           --log-output --log-level INFO --progress-bar
         
-        jupyter nbconvert "$output_notebook" --to html --output-dir="${{ env.MODELDIR }}"
+        jupyter nbconvert "$output_notebook" --to html --output-dir="${{ env.TRAINING_DETAILS }}"
 
     - name: Train model
       run: |
         set -euxo pipefail
         source "$PWD/.venv/bin/activate"
 
-        output_notebook="${{ env.MODELDIR }}/${{ env.NOTEBOOK_BASENAME }}_result_v${{ env.MODELVERSION }}.ipynb"
+        output_notebook="${{ env.TRAINING_DETAILS }}/${{ env.NOTEBOOK_BASENAME }}_${{ env.MODELVERSION }}_${{ github.event.inputs.tflite_size }}_result.ipynb"
 
         papermill "${{ env.NOTEBOOK }}" "$output_notebook" \
           -p TFlite_Version "${{ env.MODELVERSION }}" \
+          -p TFlite_Size "${{ github.event.inputs.tflite_size }}" \
           -p Output_Dir "${{ env.MODELDIR }}" \
           --log-output --log-level INFO --progress-bar
         
-        jupyter nbconvert "$output_notebook" --to html --output-dir="${{ env.MODELDIR }}"
+        jupyter nbconvert "$output_notebook" --to html --output-dir="${{ env.TRAINING_DETAILS }}"
 
     - name: Compare models
       run: |
         set -euxo pipefail
         source "$PWD/.venv/bin/activate"
 
-        output_notebook="${{ env.MODELDIR }}/03_Compare_Models_result_v${{ env.MODELVERSION }}.ipynb"
+        output_notebook="${{ env.TRAINING_DETAILS }}/03_Compare_Models_${{ env.MODELVERSION }}_${{ github.event.inputs.tflite_size }}_result.ipynb"
 
         papermill 03_Compare_Models.ipynb "$output_notebook" \
           -p Input_Dir "${{ env.RAWIMAGEDIR }}" \
           --log-output --log-level INFO --progress-bar
         
-        jupyter nbconvert "$output_notebook" --to html --output-dir="${{ env.MODELDIR }}"
+        jupyter nbconvert "$output_notebook" --to html --output-dir="${{ env.TRAINING_DETAILS }}"
 
     - name: Upload model artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.NOTEBOOK_MODELTYPE }}_v${{ env.MODELVERSION }}
+        name: ${{ env.NOTEBOOK_MODELTYPE }}_${{ env.MODELVERSION }}_${{ github.event.inputs.tflite_size }}
         path: ${{ env.MODELDIR }}/
 
     - name: Commit results to branch (if enabled)
@@ -182,34 +190,22 @@ jobs:
 
         mkdir -p models
         subfolder=""
-        tflite_file=$(find "${{ env.MODELDIR }}" -name "*.tflite" | head -n 1)
+        tflite_file=$(find "${{ env.MODELDIR }}" -maxdepth 1 -name "*.tflite" | head -n 1)
         [[ "$tflite_file" == *"ana-cont"* ]] && subfolder="ana-cont"
         [[ "$tflite_file" == *"ana-class100"* ]] && subfolder="ana-class100"
         dest="models${subfolder:+/$subfolder}"
 
-        find "${{ env.MODELDIR }}" -type f | while read -r filepath; do
-          filename=$(basename "$filepath")
-          ext="${filename##*.}"
-
-          if [[ "$ext" == "tflite" ]]; then
-            mkdir -p "$dest"
-            mv "$filepath" "$dest/"
-          else
-            detail_dir="$dest/training_details/${{ env.NOTEBOOK_MODELTYPE }}_v${{ env.MODELVERSION }}"
-            mkdir -p "$detail_dir"
-            mv "$filepath" "$detail_dir/"
-          fi
-        done
+        rsync -a "${{ env.MODELDIR }}/" "$dest/"
 
         rm -rf "${{ env.MODELDIR }}"
         
         git add models/
-        git commit -m "Add models from ${{ env.NOTEBOOK_MODELTYPE }}_v${{ env.MODELVERSION }}"
+        git commit -m "Add models from ${{ env.NOTEBOOK_MODELTYPE }}_${{ env.MODELVERSION }}_${{ github.event.inputs.tflite_size }}"
         
         git pull --rebase
         git push
 
-    - name: Trigger compare-models workflow on current branch (if enabled)
+    - name: Trigger compare-models workflow on current branch
       if: ${{ github.event.inputs.commit_to_branch == 'true' && github.ref != 'refs/heads/main' }}
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
