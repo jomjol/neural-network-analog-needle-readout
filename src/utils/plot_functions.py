@@ -1,6 +1,8 @@
-import tensorflow.keras as keras
+import matplotlib.pyplot as plt
 import math
 import numpy as np
+import pandas as pd
+
 
 def class_encoding(y_train, nb_classes=100):
     '''like to_categorical.
@@ -11,6 +13,7 @@ def class_encoding(y_train, nb_classes=100):
     for i, y in enumerate(y_train):
         ret[i, int((y*10))] = 1
     return ret
+
 
 def class_decoding(y_train, nb_classes=100):
     ''' from_categorical like function. It returns a float value between 0.0 and 9.9
@@ -23,52 +26,21 @@ def class_decoding(y_train, nb_classes=100):
     return ret
 
 
+# Plot dataset distribution (100 classes: 0.0 .. 9.9)
+def plot_dataset_distribution(data):
+    _, inverse = np.unique(data, return_inverse=True)
+    bincount_result = np.bincount(inverse)
+    fig = plt.figure(figsize=(40, 10))
+    fig.suptitle("Distribution of data")
+    plt.bar(np.arange (0, 100/10, 0.1), bincount_result, width=0.09, align='center')
+    plt.ylabel('Count')
+    plt.xlabel('Class')
+    plt.tight_layout()
+
+    return plt.xticks(np.arange(0, 100/10, 0.1))
 
 
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-def plot_dataset(images, labels, columns=10, rows=5, figsize=(18, 10), nb_classes=100):
-
-    fig = plt.figure(figsize=figsize)
-    
-    for i in range(1, columns*rows +1):
-        if (i>len(labels)):
-            break
-        fig.add_subplot(rows, columns, i)
-        plt.title(labels[i-1])  # set title
-        plt.xticks([0.2, 0.4, 0.6, 0.8])
-        plt.imshow((images[i-1]).astype(np.uint8), aspect='1.6', extent=[0, 1, 0, 1])
-        # yellow lines
-        for y in np.arange(0.2, 0.8, 0.2):
-            plt.axhline(y=y,color='yellow')
-        ax=plt.gca()
-        ax.get_xaxis().set_visible(False) 
-        plt.tight_layout()
-    plt.show()
-
-
-def GetValueFromVektor10(_val):
-#    print(_val)
-    catmax = np.argmax(_val)
-    catmaxminus = (catmax - 1) % 10
-    catmaxplus = (catmax + 1) % 10
-
-    val_catmax = _val[catmax]
-    val_catmaxminus = _val[catmaxminus]
-    val_catmaxplus = _val[catmaxplus]
-    
-    
-    result_ist = catmax
-#    print("GetVektorFromValue10: catmax " + str(catmax) + " catmaxminus: " + str(catmaxminus) + " catmaxplus: " + str(catmaxplus) + " values: " + str(val_catmax) + " " + str(val_catmaxminus) + " " + str(val_catmaxplus))
-    if (val_catmaxplus > val_catmaxminus):
-        result_ist = result_ist + val_catmaxplus / (val_catmax + val_catmaxplus)
-        fitvalue = _val[catmax] + _val[catmaxplus]
-    else:
-        result_ist = result_ist - (val_catmaxminus) / (val_catmax + val_catmaxminus)
-        fitvalue = _val[catmax] + _val[catmaxminus]
-    return result_ist
-
+# Plot analog dataset (with class label)
 def plot_dataset_analog(data_iter, columns=9, rows=5):
 
     fig = plt.figure(figsize=(18, 11*rows/5))
@@ -90,39 +62,41 @@ def plot_dataset_analog(data_iter, columns=9, rows=5):
     plt.show()
 
 
-def plot_dataset_it_hyb(data_iter, columns=9, rows=5):
+## Plot analog result dataset (with predicted, expected and filename label)
+def plot_dataset_analog_result(images, labels, columns=7, rows=7, figsize=(18, 10)):
 
-    fig = plt.figure(figsize=(18, 11))
+    fig = plt.figure(figsize=figsize)
     
-    for i in range(1, columns*rows +1):
-        img, label = next(data_iter)
+    for i in range(1, columns * rows + 1):
+        if (i>len(labels)):
+            break
         fig.add_subplot(rows, columns, i)
-        plt.xticks([0.2, 0.4, 0.6, 0.8])
-        plt.title(str(GetValueFromVektor10(label[0])))  # set title
-        plt.imshow(img[0].astype(np.uint8), aspect='1.6', extent=[0, 1, 0, 1])
-        ax=plt.gca()
-        ax.get_xaxis().set_visible(False) 
+        plt.title(labels[i-1])  # set title
+        plt.imshow((images[i-1]).astype(np.uint8), aspect='1', extent=[0, 1, 0, 1])
         # yellow lines
-        for y in np.arange(0.2, 0.8, 0.2):
-                plt.axhline(y=y,color='yellow')
+        ax=plt.gca()
+        ax.get_yaxis().set_visible(False) 
+        ax.get_xaxis().set_visible(False) 
+        
+        plt.tight_layout()
     plt.show()
 
-def plot_dataset_it(data_iter, columns=9, rows=5, nb_classes=100):
 
-    fig = plt.figure(figsize=(18, 11))
-    
-    for i in range(1, columns*rows +1):
-        img, label = next(data_iter)
-        fig.add_subplot(rows, columns, i)
-        plt.xticks([0.2, 0.4, 0.6, 0.8])
-        plt.title(str(class_decoding(label[0].reshape(-1, nb_classes), nb_classes).reshape(-1)[0]))  # set title
-        plt.imshow(img[0].astype(np.uint8), aspect='1.6', extent=[0, 1, 0, 1])
-        ax=plt.gca()
-        ax.get_xaxis().set_visible(False) 
-        # yellow lines
-        for y in np.arange(0.2, 0.8, 0.2):
-                plt.axhline(y=y,color='yellow')
+def plot_loss(history, validation):
+    plt.semilogy(history.history['loss'])
+
+    if (validation):
+        plt.semilogy(history.history['val_loss'])
+
+    plt.title('model loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(['training','validation'], loc='upper left')
+    plt.grid(True)
     plt.show()
+
+    return plt
+
 
 def plot_acc_loss(history, modelname="modelname"):
     fig, (ax1, ax2) = plt.subplots(1, 2)
@@ -161,13 +135,19 @@ def plot_acc_loss(history, modelname="modelname"):
     plt.show()
 
 
-def plot_divergence(divergationset, title1, nb_classes):
+def plot_divergence(divergationset, title, filename=None):
     fig = plt.figure(figsize=(40, 10))
-    fig.suptitle(title1)
-    plt.bar(np.arange (0, nb_classes/10, 0.1), divergationset, width=0.09, align='center')
-    plt.ylabel('count')
-    plt.xlabel('digit class')
-    plt.xticks(np.arange(0, nb_classes/10, 0.1))
+    fig.suptitle(title, fontsize=28)
+    plt.bar(np.arange(0, len(divergationset)/10, 0.1), divergationset, width=0.09, align='center')
+    plt.ylabel('Count')
+    plt.xlabel('Deviation')
+    plt.xticks(np.arange(0, len(divergationset)/10, 0.1))
+    plt.show()
+    
+    # Save plot
+    if filename:
+        fig.savefig(filename, bbox_inches='tight')
+    
     return fig
 
 
@@ -179,31 +159,3 @@ def confusion_matrix(predicted, y_test, nb_classes):
     pd.set_option('display.expand_frame_repr', False)
     pd.set_option('max_colwidth', None)
     return pd.crosstab(ytrue, ypred)
-
-
-def predict_meter_digits():
-    import numpy as np
-    from tensorflow import keras
-
-    max_delta = 0.11
-
-    predictions = class_decoding(model.predict(xz_data.astype(np.float32)), 100).reshape(-1)
-
-    # 9.9 <> 0 = 0.1 and 1.1 <> 1.2 = 0.1
-    differences = np.minimum(np.abs(predictions-yz_data), np.abs(predictions-(10-yz_data)))
-
-    # used for filtering
-    false_differences = differences>max_delta
-
-    # only differences bigger than delta. so small differences can be ignored in early stages
-    false_predicted = differences[false_differences]
-    false_images = xz_data[false_differences]
-    false_labels = [ "Expected: " + str(y) + "\n Predicted: " + str(p) + "\n" + str(f)[-26:-4] for y, p, f in zip(yz_data[false_differences], predictions[false_differences], fz_data[false_differences])]
-
-    print(f"Tested images: {len(yz_data)}. {len(false_predicted)} false predicted. Accuracy is: {1-len(false_predicted)/len(yz_data)}")
-
-    # plot the differences (max difference can only be 5.0)
-    plot_divergence(np.bincount(np.array(false_predicted*10).astype(int), minlength=51), "Divergation of false predicted", 51)
-
-    # plot the false predicted images
-    plot_dataset(np.array(false_images), false_labels, columns=7, rows=7, figsize=(18,18))
