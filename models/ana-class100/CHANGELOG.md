@@ -1,5 +1,7 @@
-
 ## Changelog: Model 'ana-class100' (Value by classification 0.0 - 9.9)
+
+### 2.01 -30-AUG-2025
+* Environment: Limit `keras` to v3.10 to avoid usage of `SHAPE` operator which is not usable on actual target environment (ESP tflite micro)
 
 ### 2.00 - 25-AUG-2025
 * Use same resize algorithm (mitchell-cubic) than in real environment (stb image library)
