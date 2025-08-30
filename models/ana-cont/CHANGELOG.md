@@ -1,5 +1,8 @@
 ## Changelog: Model 'ana-cont' (Value by angle)
 
+### 19.01 -30-AUG-2025
+* Environment: Limit `keras` to v3.10 to avoid usage of `SHAPE` operator which is not usable on actual ESP32 enivronemt
+
 ### 19.00 - 25-AUG-2025
 * Use same resize algorithm (mitchell-cubic) than in real environment (stb image library)
 * Train models using resized images loaded from RAM (instead of saving + loading from file, now part of training notebook)
