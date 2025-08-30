@@ -1,7 +1,7 @@
 ## Changelog: Model 'ana-cont' (Value by angle)
 
 ### 19.01 -30-AUG-2025
-* Environment: Limit `keras` to v3.10 to avoid usage of `SHAPE` operator which is not usable on actual ESP32 enivronemt
+* Environment: Limit `keras` to v3.10 to avoid usage of `SHAPE` operator which is not usable on actual target environment (ESP tflite micro)
 
 ### 19.00 - 25-AUG-2025
 * Use same resize algorithm (mitchell-cubic) than in real environment (stb image library)
